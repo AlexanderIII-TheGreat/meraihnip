@@ -17,17 +17,17 @@ const get = async (req, res, next) => {
     const validate = await schema.validateAsync(req.query);
 
     const result = await database.$transaction([
-      database.kalenderEvent.findMany({
+      database.event.findMany({
         skip: validate.skip,
         take: validate.take,
         orderBy: {
-          [validate.sortBy]: validate.descending ? 'desc' : 'asc',
+          [validate.sortBy || 'createdAt']: validate.descending ? 'desc' : 'asc',
         },
         where: {
           ...filterToJson(validate),
         },
       }),
-      database.kalenderEvent.count({
+      database.event.count({
         where: {
           ...filterToJson(validate),
         },
@@ -48,7 +48,7 @@ const find = async (req, res, next) => {
 
     const validate = await schema.validateAsync(req.params);
 
-    const result = await database.kalenderEvent.findUnique({
+    const result = await database.event.findUnique({
       where: {
         id: validate.id,
       },
@@ -70,9 +70,7 @@ const insert = async (req, res, next) => {
     const schema = Joi.object({
       gambar: Joi.string().required(),
       nama: Joi.string().required(),
-      keterangan: Joi.string(),
-      startDate: Joi.date().required(),
-      endDate: Joi.date().required(),
+      keterangan: Joi.string().allow(null, ''),
     });
 
     const validate = await schema.validateAsync({
@@ -80,7 +78,7 @@ const insert = async (req, res, next) => {
       gambar: req?.file?.path,
     });
 
-    const result = await database.kalenderEvent.create({
+    const result = await database.event.create({
       data: validate,
     });
 
@@ -96,11 +94,9 @@ const insert = async (req, res, next) => {
 const update = async (req, res, next) => {
   try {
     const schema = Joi.object({
-      gambar: Joi.string(),
+      gambar: Joi.string().allow(null, ''),
       nama: Joi.string().required(),
-      keterangan: Joi.string(),
-      startDate: Joi.date(),
-      endDate: Joi.date(),
+      keterangan: Joi.string().allow(null, ''),
       id: Joi.number().required(),
     });
 
@@ -115,7 +111,7 @@ const update = async (req, res, next) => {
       }
     );
 
-    const isExist = await database.kalenderEvent.findUnique({
+    const isExist = await database.event.findUnique({
       where: {
         id: validate.id,
       },
@@ -123,14 +119,16 @@ const update = async (req, res, next) => {
 
     if (!isExist) throw new BadRequestError('event tidak ditemukan');
 
-    const result = await database.kalenderEvent.update({
+    const { id, ...data } = validate;
+
+    const result = await database.event.update({
       where: {
-        id: validate.id,
+        id: id,
       },
-      data: validate,
+      data: data,
     });
 
-    if (validate.gambar) deleteFile(isExist.gambar);
+    if (validate.gambar && isExist.gambar) deleteFile(isExist.gambar);
 
     res.status(200).json({
       data: result,
@@ -149,7 +147,7 @@ const remove = async (req, res, next) => {
 
     const validate = await schema.validateAsync(req.params);
 
-    const isExist = await database.kalenderEvent.findUnique({
+    const isExist = await database.event.findUnique({
       where: {
         id: validate.id,
       },
@@ -157,12 +155,13 @@ const remove = async (req, res, next) => {
 
     if (!isExist) throw new BadRequestError('event tidak ditemukan');
 
-    const result = await database.kalenderEvent.delete({
+    const result = await database.event.delete({
       where: {
         id: validate.id,
       },
-      data: validate,
     });
+
+    if (isExist.gambar) deleteFile(isExist.gambar);
 
     res.status(200).json({
       data: result,

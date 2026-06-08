@@ -6,9 +6,9 @@ export { default as menuListAdmin } from "./menu-list-admin";
 // export const SERVER_URL = 'https://bimbel.fungsional.id/server/';
 // export const FRONTEND_URL = 'https://bimbel.fungsional.id';
 
-export const SERVER_URL_API = "http://localhost:8002/api";
-export const SERVER_URL = "http://localhost:8002";
-export const FRONTEND_URL = "http://localhost:5173";
+export const SERVER_URL_API = import.meta.env.VITE_API_URL || "http://localhost:8002/api";
+export const SERVER_URL = import.meta.env.VITE_SERVER_URL || "http://localhost:8002";
+export const FRONTEND_URL = import.meta.env.VITE_FRONTEND_URL || "http://localhost:5173";
 export const GOOGLE_CLIENT_ID = "325309011250-2gpas1aoils9hherkrj8l1nu5rsfgcup.apps.googleusercontent.com";
 
 export { adminRoutes } from "./route-admin";

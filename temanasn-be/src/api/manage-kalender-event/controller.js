@@ -115,11 +115,13 @@ const update = async (req, res, next) => {
 
         if (!isExist) throw new BadRequestError('Event tidak ditemukan');
 
+        const { id, ...data } = validate;
+
         const result = await database.kalenderEvent.update({
             where: {
-                id: validate.id,
+                id: id,
             },
-            data: validate,
+            data: data,
         });
 
         res.status(200).json({

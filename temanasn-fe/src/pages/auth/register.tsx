@@ -66,18 +66,18 @@ export default function Example() {
   return (
     <>
       <div
-        style={{ backgroundImage: `url('/img/bg.jpg')` }}
+        style={{ backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('/img/bg.jpg')` }}
         className="min-h-[100vh] bg-no-repeat bg-cover bg-center pt-10"
       >
         <div className="flex min-h-full flex-1 flex-col justify-center py-10 sm:px-6 lg:px-8">
           <div className="sm:mx-auto sm:w-full sm:max-w-md">
             <img
               className="mx-auto w-auto"
-              style={{ height: "76px" }}
+              style={{ height: "96px" }}
               src={LOGO}
               alt="Your Company"
             />
-            <h2 className="mt-4 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
+            <h2 className="mt-4 text-center text-2xl font-bold leading-9 tracking-tight text-white">
               Daftar akun baru
             </h2>
           </div>
@@ -151,7 +151,7 @@ export default function Example() {
                   <p className="mt-10 text-center text-sm text-gray-500">
                     <span
                       style={{
-                        color: "rgb(73 193 191 / 1)",
+                        color: "gray",
                         padding: "0 4px",
                         borderRadius: "4px",
                       }}
@@ -159,10 +159,10 @@ export default function Example() {
                       Sudah punya akun?{" "}
                       <Link
                         to={`/auth/login${location.search}`}
-                        className="font-semibold leading-6 hover:text-gray-300"
+                        className="font-semibold leading-6 hover:text-blue-700"
                         style={{
                           textDecoration: "underline",
-                          color: "rgb(73 193 191 / 1)",
+                          color: "#1d4ed8", // Blue-700
                         }}
                       >
                         Login sekarang
