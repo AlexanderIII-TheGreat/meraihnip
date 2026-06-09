@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "nodemon ./bin/www",
-    "start": "PORT=8002 node ./bin/www",
+    "start": "node ./bin/www",
     "seed": "node ./src/database/seed.js"
   },
   "prisma": {

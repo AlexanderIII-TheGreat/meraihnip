@@ -9,7 +9,7 @@
   ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "concurrently \"cd temanasn-be && yarn dev\"  \"cd temanasn-fe && yarn dev\""
+    "dev": "concurrently \"npm run dev --workspace=temanasn-be\" \"npm run dev --workspace=temanasn-fe\""
   },
   "author": "",
   "license": "ISC",

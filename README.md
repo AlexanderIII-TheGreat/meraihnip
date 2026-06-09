@@ -70,14 +70,14 @@ bimblefungsional/
 
 ### 1. Prasyarat Sistem
 * Node.js (v18 atau lebih baru)
-* Yarn atau NPM
+* NPM (v7 atau lebih baru untuk dukungan workspaces)
 * Docker (opsional, untuk menjalankan Redis)
 * Database MySQL aktif
 
 ### 2. Kloning dan Setup Dependensi
-Dari root direktori workspace, jalankan perintah instalasi dependensi untuk seluruh sub-folder sekaligus (menggunakan Yarn Workspaces):
+Dari root direktori workspace, jalankan perintah instalasi dependensi untuk seluruh sub-folder sekaligus (menggunakan NPM Workspaces):
 ```bash
-yarn install
+npm install
 ```
 
 ### 3. Konfigurasi Environment Variables (`.env`)
@@ -105,7 +105,7 @@ npx prisma db push
 ```
 *(Opsional)* Jalankan seeder untuk mengisi data awal:
 ```bash
-yarn seed
+npm run seed --workspace=temanasn-be
 ```
 
 ### 5. Menjalankan Docker (Redis)
@@ -117,7 +117,7 @@ docker compose up -d
 ### 6. Menjalankan Server secara Development
 Jalankan frontend dan backend secara bersamaan dari root direktori:
 ```bash
-yarn dev
+npm run dev
 ```
 * Backend akan berjalan di: `http://localhost:8002`
 * Frontend akan berjalan di: `http://localhost:5173`
@@ -257,16 +257,38 @@ erDiagram
 ### Build Aset Frontend
 Lakukan kompilasi file aset statis frontend agar siap dideploy:
 ```bash
-cd temanasn-fe
-yarn build
+npm run build --workspace=temanasn-fe
 ```
 Hasil build akan berada di direktori `temanasn-fe/dist/`.
 
 ### Deployment dengan PM2 (Production)
 Aplikasi dikonfigurasi untuk dijalankan menggunakan PM2 Process Manager secara production. Berkas konfigurasi berada di `ecosystem.config.js`.
 
-Untuk menjalankan aplikasi:
-```bash
-pm2 start ecosystem.config.js
-```
-Aplikasi backend dan server preview frontend akan otomatis berjalan secara daemon di latar belakang.
+Langkah-langkah deployment:
+
+1. **Instal PM2 secara global** (jika belum):
+   ```bash
+   npm install -g pm2
+   ```
+
+2. **Instal seluruh dependensi project** di direktori root:
+   ```bash
+   npm install
+   ```
+
+3. **Lakukan Build Frontend**:
+   ```bash
+   npm run build --workspace=temanasn-fe
+   ```
+
+4. **Jalankan Aplikasi dengan PM2**:
+   ```bash
+   pm2 start ecosystem.config.js
+   ```
+
+5. **Manajemen Proses PM2**:
+   * Melihat status aplikasi: `pm2 status`
+   * Melihat log real-time: `pm2 logs`
+   * Menghentikan aplikasi: `pm2 stop ecosystem.config.js`
+   * Restart aplikasi: `pm2 restart ecosystem.config.js`
+   * Menyimpan daftar proses agar otomatis berjalan kembali saat server restart: `pm2 save`
