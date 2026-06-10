@@ -32,6 +32,22 @@
 
 ---
 
+## ✨ Fitur Baru & Pembaruan (Juni 2026)
+
+### 1. 🙋‍♂️ Modul FAQ Accordion (Layanan Bantuan)
+* **Deskripsi:** Menambahkan fitur tanya-jawab interaktif (FAQ) di atas modul aduan tiket utama pada halaman `/my-tickets`.
+* **Database & API:** Terkoneksi secara dinamis dengan tabel `FaqChatbot` melalui endpoint `/api/faq-chatbot`.
+* **Tampilan:** Desain modern menggunakan grid 2-kolom pada layar besar dan responsive 1-kolom pada layar seluler dengan animasi drop-down yang halus.
+
+### 2. 📊 Visualisasi Dashboard Statistik Tryout Premium
+* **Tata Letak Side-by-Side:** Restrukturisasi visualisasi kategori soal (TWK, TIU, TKP) agar teks skor rangkuman berada di kiri dan grafik bulat (donut) berada di kanan untuk tampilan yang lebih rapi dan efisien.
+* **Tema Biru Selaras:** Mengubah seluruh warna grafik (recharts) agar selaras dengan skema warna primer website (`#0ea5e9` & `#0369a1`).
+* **Interaktivitas Grafik Bulat:** Menambahkan tooltip interaktif dan dynamic center text (menampilkan kata *TOTAL* saat default, serta memperbarui label/nilai kategori secara real-time saat salah satu segmen grafik bulat dihover).
+* **Konsistensi Column Bar Chart:** Menyeragamkan seluruh "Grafik Jawaban berdasarkan kategori" untuk sub-materi (TWK, TIU, TKP) menggunakan chart grafik kolom vertikal (column bar) agar konsisten dan mudah dipahami.
+* **Penanganan Truncation Query:** Mengoptimalkan controller backend dengan menaikkan limit `group_concat_max_len` MySQL secara aman sebelum eksekusi statistik agar tidak memotong JSON hasil query ketika soal tryout sangat banyak.
+
+---
+
 ## 📂 Struktur Proyek (Directory Layout)
 
 ```text
