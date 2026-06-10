@@ -363,23 +363,23 @@ export default function PembahasanTryout({ isBimbel }: any) {
                             <span className="text-gray-400">Skor Anda:</span>
                             <span className="text-indigo-900 font-black">{e.all_point}<span className="text-gray-400 font-normal">/{e.maxPoint}</span></span>
                           </div>
-                          <div className="flex justify-between items-center text-sky-800">
+                          <div className="flex justify-between items-center text-blue-900">
                             <span>5 Point:</span>
                             <span className="font-bold">{e?.point5 || 0}</span>
                           </div>
-                          <div className="flex justify-between items-center text-sky-600">
+                          <div className="flex justify-between items-center text-blue-800">
                             <span>4 Point:</span>
                             <span className="font-bold">{e?.point4 || 0}</span>
                           </div>
-                          <div className="flex justify-between items-center text-sky-500">
+                          <div className="flex justify-between items-center text-blue-700">
                             <span>3 Point:</span>
                             <span className="font-bold">{e?.point3 || 0}</span>
                           </div>
-                          <div className="flex justify-between items-center text-sky-400">
+                          <div className="flex justify-between items-center text-blue-600">
                             <span>2 Point:</span>
                             <span className="font-bold">{e?.point2 || 0}</span>
                           </div>
-                          <div className="flex justify-between items-center text-sky-300">
+                          <div className="flex justify-between items-center text-blue-500">
                             <span>1 Point:</span>
                             <span className="font-bold">{e?.point1 || 0}</span>
                           </div>

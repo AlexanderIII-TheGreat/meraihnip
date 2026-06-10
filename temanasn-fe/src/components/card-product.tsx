@@ -50,7 +50,7 @@ export default function CardProduct({
               Terlaris
             </span>
             {alumniVoucher?.value && (
-              <span className="bg-[#0ea5e9] text-white text-[10px] font-bold px-2.5 py-1 rounded-md uppercase tracking-wide">
+              <span className="bg-[#1E3A8A] text-white text-[10px] font-bold px-2.5 py-1 rounded-md uppercase tracking-wide">
                 Diskon 50%
               </span>
             )}
@@ -89,12 +89,12 @@ export default function CardProduct({
                   <p className="text-[10px] text-gray-400 line-through">
                     {formatCurrency(item?.harga)}
                   </p>
-                  <p className="text-lg font-bold text-[#0ea5e9]">
+                  <p className="text-lg font-bold text-[#1E3A8A]">
                     {formatCurrency(discountedPrice)}
                   </p>
                 </>
               ) : (
-                <p className="text-lg font-bold text-[#0ea5e9]">
+                <p className="text-lg font-bold text-[#1E3A8A]">
                   {formatCurrency(item?.harga)}
                 </p>
               )}
@@ -109,7 +109,7 @@ export default function CardProduct({
               className={`px-5 py-2.5 rounded-lg text-sm font-bold transition-all ${
                 isActivelyPurchased(item)
                   ? "bg-gray-100 text-gray-400 cursor-not-allowed"
-                  : "bg-[#0ea5e9] text-white shadow-md shadow-[#0ea5e9]/20 active:scale-95"
+                  : "bg-[#1E3A8A] text-white shadow-md shadow-[#1E3A8A]/20 active:scale-95"
               }`}
             >
               {isActivelyPurchased(item) ? 'Sudah Diambil' : (item.Pembelian?.length > 0 ? 'Beli Lagi' : 'Beli Sekarang')}
@@ -185,7 +185,7 @@ export default function CardProduct({
       <div className="p-6 pt-3">
         {!isPurchasing ? (
           <button
-            className="block w-full select-none rounded-lg bg-[#0ea5e9] py-3.5 px-7 text-center align-middle font-sans text-sm font-bold uppercase text-white shadow-md shadow-gray-900/10 transition-all hover:shadow-lg hover:shadow-gray-900/20 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+            className="block w-full select-none rounded-lg bg-[#1E3A8A] py-3.5 px-7 text-center align-middle font-sans text-sm font-bold uppercase text-white shadow-md shadow-gray-900/10 transition-all hover:shadow-lg hover:shadow-gray-900/20 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
             type="button"
             disabled={isActivelyPurchased(item)}
             onClick={() => {
@@ -204,7 +204,7 @@ export default function CardProduct({
             {item?._count.paketPembelianMateri ? (
               <Link
                 to={`/my-class/${item.id}/materi`}
-                className="block w-full select-none rounded-lg bg-[#0ea5e9] py-3.5 text-center align-middle font-sans text-sm font-bold uppercase text-white shadow-md shadow-gray-900/10 transition-all hover:shadow-lg hover:shadow-gray-900/20 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+                className="block w-full select-none rounded-lg bg-[#1E3A8A] py-3.5 text-center align-middle font-sans text-sm font-bold uppercase text-white shadow-md shadow-gray-900/10 transition-all hover:shadow-lg hover:shadow-gray-900/20 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
               >
                 Materi
               </Link>
@@ -212,7 +212,7 @@ export default function CardProduct({
             {item?._count.paketPembelianBimbel ? (
               <Link
                 to={`/my-class/${item.id}/bimbel`}
-                className="block w-full select-none rounded-lg bg-[#0ea5e9] py-3.5 text-center align-middle font-sans text-sm font-bold uppercase text-white shadow-md shadow-gray-900/10 transition-all hover:shadow-lg hover:shadow-gray-900/20 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+                className="block w-full select-none rounded-lg bg-[#1E3A8A] py-3.5 text-center align-middle font-sans text-sm font-bold uppercase text-white shadow-md shadow-gray-900/10 transition-all hover:shadow-lg hover:shadow-gray-900/20 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
                 onClick={() => setVisible(true)}
               >
                 Bimbel
@@ -221,7 +221,7 @@ export default function CardProduct({
             {item?._count.paketPembelianTryout ? (
               <Link
                 to={`/my-class/${item.id}/tryout`}
-                className="block w-full select-none rounded-lg bg-[#0ea5e9] py-3.5 text-center align-middle font-sans text-sm font-bold uppercase text-white shadow-md shadow-gray-900/10 transition-all hover:shadow-lg hover:shadow-gray-900/20 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+                className="block w-full select-none rounded-lg bg-[#1E3A8A] py-3.5 text-center align-middle font-sans text-sm font-bold uppercase text-white shadow-md shadow-gray-900/10 transition-all hover:shadow-lg hover:shadow-gray-900/20 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
                 onClick={() => setVisible(true)}
               >
                 Tryout

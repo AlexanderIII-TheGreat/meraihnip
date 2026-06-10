@@ -314,7 +314,7 @@ export default function RiwayatPembelianPage() {
                   {item.status === 'PAID' && !isExpiredByTime && (
                     <button 
                       onClick={() => navigate('/my-class')}
-                      className="w-full py-4 bg-[#14B8A6] text-white rounded-2xl text-sm font-black shadow-lg shadow-teal-100 uppercase tracking-widest mt-2 flex items-center justify-center gap-2 active:bg-teal-600"
+                      className="w-full py-4 bg-[#1E3A8A] text-white rounded-2xl text-sm font-black shadow-lg shadow-blue-100 uppercase tracking-widest mt-2 flex items-center justify-center gap-2 active:bg-[#1e40af]"
                     >
                       Masuk Kelas
                     </button>

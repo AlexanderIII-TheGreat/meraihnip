@@ -54,7 +54,7 @@ export default function UserAvatar({ name = '', image, size = 48, className = ''
   // Fallback to initials
   return (
     <div 
-      className={`${roundedFull ? 'rounded-full' : 'rounded-xl'} flex items-center justify-center font-black text-white bg-gradient-to-br from-[#14B8A6] to-[#0F766E] border-2 border-white/20 flex-shrink-0 ${className}`}
+      className={`${roundedFull ? 'rounded-full' : 'rounded-xl'} flex items-center justify-center font-black text-white bg-gradient-to-br from-[#1E3A8A] to-[#1E40AF] border-2 border-white/20 flex-shrink-0 ${className}`}
       style={{
         ...sizeStyle,
         fontSize: typeof size === 'number' ? size * 0.4 : '1rem'

@@ -106,7 +106,7 @@ export default function Example() {
   return (
     <>
       <div
-        style={{ backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('/img/bg.jpg')` }}
+        style={{ backgroundImage: `linear-gradient(rgba(5, 10, 30, 0.62), rgba(5, 10, 30, 0.62)), url('/img/bg-astero.png')` }}
         className="min-h-[100vh] bg-no-repeat bg-cover bg-center pt-20"
       >
         <div className="flex min-h-full flex-1 flex-col justify-center py-12 sm:px-6 lg:px-8">
@@ -146,7 +146,7 @@ export default function Example() {
                 />
                 <Link
                   to="/auth/forgot-password"
-                  className="!mt-2 text-sm text-right w-full block text-indigo-600 hover:text-indigo-500"
+                  className="!mt-2 text-sm text-right w-full block text-[#1E3A8A] hover:text-[#1e40af]"
                 >
                   Lupa password?
                 </Link>
@@ -221,10 +221,10 @@ export default function Example() {
                       Belum punya akun?{" "}
                       <Link
                         to={`/auth/register${location.search}`}
-                        className="font-semibold leading-6 hover:text-blue-700"
+                        className="font-semibold leading-6 hover:text-[#1e40af]"
                         style={{
                           textDecoration: "underline",
-                          color: "#1d4ed8", // Blue-700
+                          color: "#1E3A8A", // Dark Blue
                         }}
                       >
                         Daftar sekarang
@@ -238,7 +238,7 @@ export default function Example() {
         </div>
         {/* WhatsApp floating button */}
         <a
-          href={`https://api.whatsapp.com/send/?phone=${waNumber}&text=Halo+admin%2C+saya+butuh+bantuan+di+MeraihNIP&type=phone_number&app_absent=0`}
+          href={`https://api.whatsapp.com/send/?phone=${waNumber}&text=Halo+admin%2C+saya+butuh+bantuan+di+Astero&type=phone_number&app_absent=0`}
           target="_blank"
           rel="noopener noreferrer"
           className="fixed bottom-6 right-6 z-50"

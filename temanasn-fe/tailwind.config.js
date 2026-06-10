@@ -5,14 +5,14 @@ export default {
   theme: {
     extend: {
       colors: {
-        primary: '#0ea5e9',
+        primary: '#1E3A8A',
         secondary: '#AB1414',
-        tertiary: '#0ea5e9',
+        tertiary: '#1E3A8A',
         success: '#00C853',
         warning: '#FFC400',
         indigo: {
-          900: '#0ea5e9',
-          800: '#0ea5e9',
+          900: '#1E3A8A',
+          800: '#1E3A8A',
         },
       },
       keyframes: {

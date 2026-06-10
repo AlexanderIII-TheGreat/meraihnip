@@ -139,12 +139,12 @@ export default function HomePage() {
     datasets: [{
       label: 'Tryout Dikerjakan',
       data: [0,0,0,0,0,0,0],
-      borderColor: 'rgb(2, 132, 199)',
-      backgroundColor: 'rgba(2, 132, 199, 0.1)',
+      borderColor: 'rgb(30, 58, 138)',
+      backgroundColor: 'rgba(30, 58, 138, 0.1)',
       tension: 0.4,
       fill: true,
       borderWidth: 3,
-      pointBackgroundColor: 'rgb(2, 132, 199)',
+      pointBackgroundColor: 'rgb(30, 58, 138)',
       pointBorderColor: '#fff',
       pointBorderWidth: 2,
       pointRadius: 4,
@@ -245,12 +245,12 @@ export default function HomePage() {
             ...dashRes.chartData,
             datasets: (dashRes.chartData.datasets || []).map((ds: any) => ({
               ...ds,
-              borderColor: 'rgb(2, 132, 199)',
-              backgroundColor: 'rgba(2, 132, 199, 0.1)',
+              borderColor: 'rgb(30, 58, 138)',
+              backgroundColor: 'rgba(30, 58, 138, 0.1)',
               tension: 0.4,
               fill: true,
               borderWidth: 3,
-              pointBackgroundColor: 'rgb(2, 132, 199)',
+              pointBackgroundColor: 'rgb(30, 58, 138)',
               pointBorderColor: '#fff',
               pointBorderWidth: 2,
               pointRadius: 4,
@@ -402,7 +402,7 @@ export default function HomePage() {
                 className="w-10 h-10 bg-white/10 rounded-xl flex items-center justify-center backdrop-blur-md relative">
                 <IconBell size={24} className="text-white" />
                 {(data?.notifikasi?.filter((e:any) => !e?.isRead)?.length || 0) > 0 && (
-                  <div className="absolute top-2 right-2 w-2 h-2 bg-red-500 rounded-full border border-[#14B8A6]"></div>
+                  <div className="absolute top-2 right-2 w-2 h-2 bg-red-500 rounded-full border border-[#1E3A8A]"></div>
                 )}
               </button>
               <AnimatePresence>
@@ -420,7 +420,7 @@ export default function HomePage() {
                     <div className="flex border-b border-gray-50">
                       {(['SYSTEM','USER'] as const).map(tab => (
                         <button key={tab} onClick={() => setNotificationTab(tab)}
-                          className={`flex-1 py-3 text-xs font-black tracking-widest uppercase transition-colors ${notificationTab===tab ? 'text-[#14B8A6] border-b-2 border-[#14B8A6]' : 'text-gray-400'}`}>
+                          className={`flex-1 py-3 text-xs font-black tracking-widest uppercase transition-colors ${notificationTab===tab ? 'text-[#1E3A8A] border-b-2 border-[#1E3A8A]' : 'text-gray-400'}`}>
                           {tab === 'SYSTEM' ? 'Untuk Kamu' : 'Terbaru & Update'}
                         </button>
                       ))}
@@ -438,7 +438,7 @@ export default function HomePage() {
                               <div className="flex-1">
                                 <h4 className="text-sm font-black text-indigo-950 mb-1 leading-tight">{e.title || e?.notification?.title}</h4>
                                 <p className="text-xs font-medium text-gray-500 line-clamp-2 leading-relaxed">{e.keterangan || e?.notification?.keterangan}</p>
-                                <span className="text-[10px] font-bold text-[#14B8A6] mt-2 block uppercase tracking-tighter">
+                                <span className="text-[10px] font-bold text-[#1E3A8A] mt-2 block uppercase tracking-tighter">
                                   {moment(e.createdAt || e?.notification?.createdAt).fromNow()}
                                 </span>
                               </div>
@@ -452,7 +452,7 @@ export default function HomePage() {
                         )}
                     </div>
                     <button onClick={handleReadAll}
-                      className="w-full py-4 text-xs font-black text-[#14B8A6] bg-gray-50 hover:bg-gray-100 transition-colors uppercase tracking-widest">
+                      className="w-full py-4 text-xs font-black text-[#1E3A8A] bg-gray-50 hover:bg-gray-100 transition-colors uppercase tracking-widest">
                       Tandai semua sudah dibaca
                     </button>
                   </motion.div>
@@ -531,16 +531,16 @@ export default function HomePage() {
                 {aksesCepat.slice(rowIdx*2, rowIdx*2+2).map((item) => (
                   <button key={item.label} onClick={() => navigate(item.path)}
                     className="flex items-center gap-2.5 rounded-[13px] px-3 py-2.5 border active:scale-95 transition-transform text-left"
-                    style={{ background: '#f0f7ff', borderColor: '#bae6fd' }}>
+                    style={{ background: '#eff6ff', borderColor: '#bfdbfe' }}>
                     <div className="w-[34px] h-[34px] rounded-[10px] flex items-center justify-center flex-shrink-0"
-                      style={{ background: 'rgba(2, 132, 199, 0.12)' }}>
-                      <svg width="16" height="16" fill="none" stroke="#0284c7" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24">
+                      style={{ background: 'rgba(30, 58, 138, 0.12)' }}>
+                      <svg width="16" height="16" fill="none" stroke="#1e3a8a" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24">
                         {item.icon}
                       </svg>
                     </div>
                     <div className="min-w-0">
-                      <div className="text-[11px] font-bold text-[#0369a1] leading-tight truncate">{item.label}</div>
-                      <div className="text-[9px] text-[#0284c7] mt-0.5">{item.sub}</div>
+                      <div className="text-[11px] font-bold text-[#1e3a8a] leading-tight truncate">{item.label}</div>
+                      <div className="text-[9px] text-[#1e40af] mt-0.5">{item.sub}</div>
                     </div>
                   </button>
                 ))}
@@ -865,7 +865,7 @@ export default function HomePage() {
           {/* Aktivitas Belajar (Weekly Chart) */}
           <div className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 flex flex-col justify-between h-[380px]">
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-4">
-              <div className="border-l-4 border-sky-500 pl-3">
+              <div className="border-l-4 border-primary pl-3">
                 <h3 className="text-lg font-bold text-indigo-950 leading-tight">Aktivitas Belajar</h3>
                 <p className="text-gray-400 text-xs mt-1 font-medium">Monitoring waktu belajar mingguan</p>
               </div>
@@ -879,10 +879,10 @@ export default function HomePage() {
                 </div>
                 <div className="w-[1px] h-6 bg-gray-200" />
                 <div className="text-left">
-                  <p className="text-[10px] font-semibold text-gray-400">Rata-rata/Hari</p>
+                  <p className="text-[10px] font-semibold text-[#1E3A8A]">Rata-rata/Hari</p>
                   <p className="text-sm mt-0.5 font-bold">
-                    <span className="text-sky-600">{data?.rerataBelajarHarian || 0}</span>{" "}
-                    <span className="text-[10px] font-normal text-sky-300">menit</span>
+                    <span className="text-[#1E3A8A]">{data?.rerataBelajarHarian || 0}</span>{" "}
+                    <span className="text-[10px] font-normal text-[#1E3A8A]">menit</span>
                   </p>
                 </div>
               </div>
@@ -897,7 +897,7 @@ export default function HomePage() {
           <div className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 flex flex-col">
             <div className="flex items-center justify-between mb-6">
               <div className="flex items-center gap-2">
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-sky-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
                 </svg>
                 <h2 className="text-lg font-bold text-indigo-950">Agenda Bimbel</h2>
@@ -935,7 +935,7 @@ export default function HomePage() {
               {/* Grid of weekdays */}
               <div className="grid grid-cols-7 gap-x-2 text-center mb-4">
                 {['Min', 'Sen', 'Sel', 'Rab', 'Kam', 'Jum', 'Sab'].map(day => (
-                  <div key={day} className="text-xs font-bold text-slate-400 select-none">
+                  <div key={day} className="text-xs font-bold text-[#1E3A8A] select-none">
                     {day}
                   </div>
                 ))}
@@ -965,14 +965,14 @@ export default function HomePage() {
                     dayCells.push(
                       <div key={`day-${day}`} className="h-10 flex flex-col justify-center items-center relative select-none">
                         {isToday ? (
-                          <div className="border border-sky-500 rounded-xl w-10 h-10 flex flex-col items-center justify-center font-bold text-sky-500 mx-auto">
+                          <div className="border border-primary rounded-xl w-10 h-10 flex flex-col items-center justify-center font-bold text-primary mx-auto">
                             <span className="text-sm">{day}</span>
-                            {hasEvent && <div className="w-1.5 h-1.5 bg-sky-500 rounded-full mt-0.5" />}
+                            {hasEvent && <div className="w-1.5 h-1.5 bg-primary rounded-full mt-0.5" />}
                           </div>
                         ) : (
-                          <div className="w-10 h-10 flex flex-col items-center justify-center text-slate-300 font-bold mx-auto hover:bg-slate-50 rounded-xl cursor-pointer transition-all">
-                            <span className="text-sm text-slate-300">{day}</span>
-                            {hasEvent && <div className="w-1.5 h-1.5 bg-indigo-500 rounded-full mt-0.5" />}
+                          <div className="w-10 h-10 flex flex-col items-center justify-center text-[#1E3A8A] font-bold mx-auto hover:bg-slate-50 rounded-xl cursor-pointer transition-all">
+                            <span className="text-sm text-[#1E3A8A]">{day}</span>
+                            {hasEvent && <div className="w-1.5 h-1.5 bg-primary rounded-full mt-0.5" />}
                           </div>
                         )}
                       </div>
@@ -1014,12 +1014,12 @@ export default function HomePage() {
 
             const getPromoCardTheme = (themeValue: any) => {
               switch (Number(themeValue)) {
-                case 2: // Sky Blue
+                case 2: // Deep Blue theme
                   return {
-                    bg: 'bg-[#f0f9ff]',
-                    border: 'border-sky-100',
-                    text: 'text-sky-600',
-                    hover: 'hover:text-sky-800',
+                    bg: 'bg-[#eff6ff]',
+                    border: 'border-blue-100',
+                    text: 'text-blue-700',
+                    hover: 'hover:text-blue-900',
                     icon: (
                       <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                         <path strokeLinecap="round" strokeLinejoin="round" d="M11 5.882V19.24a1.76 1.76 0 01-3.417.592l-2.147-6.15M18 13a3 3 0 100-6M5.436 13.683A4.001 4.001 0 017 6h1.832c4.1 0 7.625-1.234 9.168-3v14c-1.543-1.766-5.067-3-9.168-3H7a3.988 3.988 0 01-1.564-.317z" />
@@ -1038,12 +1038,12 @@ export default function HomePage() {
                       </svg>
                     ),
                   };
-                case 4: // Cyan
+                case 4: // Slate/Navy
                   return {
-                    bg: 'bg-[#ecfeff]',
-                    border: 'border-cyan-100',
-                    text: 'text-cyan-600',
-                    hover: 'hover:text-cyan-800',
+                    bg: 'bg-slate-50',
+                    border: 'border-slate-200',
+                    text: 'text-slate-700',
+                    hover: 'hover:text-slate-900',
                     icon: (
                       <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                         <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" />
