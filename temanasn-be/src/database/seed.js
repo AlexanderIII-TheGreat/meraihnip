@@ -5,6 +5,7 @@ async function main() {
   console.log('Clearing database tables...');
   
   // Clean up existing records in order to prevent duplication during re-runs
+  await database.faqChatbot.deleteMany({});
   await database.tryoutSoal.deleteMany({});
   await database.tryout.deleteMany({});
   await database.paketLatihan.deleteMany({});
@@ -184,6 +185,7 @@ async function main() {
   // 6. Seed Paket Pembelian
   const paket = await database.paketPembelian.create({
     data: {
+      id: 7, // Match /my-class/7
       nama: 'Paket Platinum CPNS & PPPK 2026',
       harga: 250000,
       keterangan: 'Akses penuh ke semua materi pembelajaran, video tutor, 10+ simulasi CAT, dan grup diskusi khusus.',
@@ -251,12 +253,23 @@ async function main() {
 
   const paketLatihan2 = await database.paketLatihan.create({
     data: {
+      id: 6, // Match /my-class/7/tryout/1/6
       nama: 'Tryout Akbar CAT Nasional Ke-1',
       kkm: 311,
       banner: 'public/BANNER_DEFAULT.png',
       isShareAnswer: true,
       keterangan: 'Simulasi tryout akbar berskala nasional dengan sistem CAT.',
       waktu: 100,
+      type: 'TRYOUT',
+    }
+  });
+
+  // Seed paketPembelianTryout
+  const ppt = await database.paketPembelianTryout.create({
+    data: {
+      id: 1, // Match /my-class/7/tryout/1
+      paketPembelianId: paket.id,
+      paketLatihanId: paketLatihan2.id,
       type: 'TRYOUT',
     }
   });
@@ -291,21 +304,151 @@ async function main() {
     }
   });
 
-  // Tryout 3: 1 day ago (Friday) - 100 mins (6000 secs)
-  await database.tryout.create({
+  // Tryout 3: 1 day ago (Friday) - 100 mins (6000 secs) - ID 10
+  const tryoutMain = await database.tryout.create({
     data: {
+      id: 10, // Match /my-class/7/tryout/1/6/10
       userId: testUser.id,
       paketLatihanId: paketLatihan2.id,
-      point: 395,
+      paketPembelianTryoutId: ppt.id,
+      point: 250, // Will be computed from sum of points
       kkm: 311,
-      maxPoint: 500,
+      maxPoint: 550,
       finishAt: new Date(today.getTime() - 1 * 24 * 3600 * 1000),
       waktuPengerjaan: 6000,
       createdAt: new Date(today.getTime() - 1 * 24 * 3600 * 1000),
     }
   });
 
-  console.log('PaketLatihan and Tryout stats seeded.');
+  // Seed TryoutSoal records for tryout ID 10 to feed statistic charts
+  console.log('Seeding TryoutSoal records for tryout 10...');
+  
+  // TWK: 30 Questions, max 150 points. KKM 65.
+  const twkSubcategories = ["Nasionalisme", "Pilar Negara", "Integritas"];
+  for (let i = 1; i <= 30; i++) {
+    const isAnswered = i % 10 !== 0; // 3 unanswered
+    const isCorrect = isAnswered && (i % 2 === 0); // half correct
+    const point = isCorrect ? 5 : 0;
+
+    await database.tryoutSoal.create({
+      data: {
+        tryoutId: tryoutMain.id,
+        soalId: i,
+        soal: `<p>Pertanyaan TWK tentang ${twkSubcategories[i % 3]} nomor ${i}</p>`,
+        jawaban: JSON.stringify([{ id: 1, jawaban: 'Pilihan A', isCorrect: true, point: 5 }]),
+        jawabanShow: 'Pilihan A',
+        jawabanSelect: isAnswered ? 1 : null,
+        isCorrect: isCorrect,
+        pembahasan: '<p>Pembahasan soal TWK ini.</p>',
+        point: point,
+        kkm: 65,
+        maxPoint: 150,
+        category: 'TWK',
+        categoryKet: 'Tes Wawasan Kebangsaan',
+        duration: 10 + i,
+        subCategory: twkSubcategories[i % 3],
+        tipePenilaian: 'BENAR_SALAH'
+      }
+    });
+  }
+
+  // TIU: 35 Questions, max 175 points. KKM 80.
+  const tiuSubcategories = ["Verbal", "Numerik", "Figural"];
+  for (let i = 1; i <= 35; i++) {
+    const isAnswered = i % 12 !== 0; // 3 unanswered
+    const isCorrect = isAnswered && (i % 3 !== 0); // 2/3 correct
+    const point = isCorrect ? 5 : 0;
+
+    await database.tryoutSoal.create({
+      data: {
+        tryoutId: tryoutMain.id,
+        soalId: 100 + i,
+        soal: `<p>Pertanyaan TIU tentang ${tiuSubcategories[i % 3]} nomor ${i}</p>`,
+        jawaban: JSON.stringify([{ id: 1, jawaban: 'Pilihan A', isCorrect: true, point: 5 }]),
+        jawabanShow: 'Pilihan A',
+        jawabanSelect: isAnswered ? 1 : null,
+        isCorrect: isCorrect,
+        pembahasan: '<p>Pembahasan soal TIU ini.</p>',
+        point: point,
+        kkm: 80,
+        maxPoint: 175,
+        category: 'TIU',
+        categoryKet: 'Tes Inteligensia Umum',
+        duration: 8 + i,
+        subCategory: tiuSubcategories[i % 3],
+        tipePenilaian: 'BENAR_SALAH'
+      }
+    });
+  }
+
+  // TKP: 45 Questions, max 225 points. KKM 166.
+  const tkpSubcategories = ["Pelayanan Publik", "Jejaring Kerja", "Sosial Budaya"];
+  for (let i = 1; i <= 45; i++) {
+    const isAnswered = i % 15 !== 0; // 3 unanswered
+    // Point assignment 1 to 5 for answered
+    const point = isAnswered ? ((i % 5) + 1) : 0;
+
+    await database.tryoutSoal.create({
+      data: {
+        tryoutId: tryoutMain.id,
+        soalId: 200 + i,
+        soal: `<p>Pertanyaan TKP tentang ${tkpSubcategories[i % 3]} nomor ${i}</p>`,
+        jawaban: JSON.stringify([
+          { id: 5, jawaban: 'Sangat Sesuai', isCorrect: false, point: 5 },
+          { id: 4, jawaban: 'Sesuai', isCorrect: false, point: 4 },
+          { id: 3, jawaban: 'Ragu-ragu', isCorrect: false, point: 3 },
+          { id: 2, jawaban: 'Tidak Sesuai', isCorrect: false, point: 2 },
+          { id: 1, jawaban: 'Sangat Tidak Sesuai', isCorrect: false, point: 1 }
+        ]),
+        jawabanShow: 'Sangat Sesuai',
+        jawabanSelect: isAnswered ? ((i % 5) + 1) : null,
+        isCorrect: false,
+        pembahasan: '<p>Pembahasan soal TKP ini.</p>',
+        point: point,
+        kkm: 166,
+        maxPoint: 225,
+        category: 'TKP',
+        categoryKet: 'Tes Karakteristik Pribadi',
+        duration: 12 + i,
+        subCategory: tkpSubcategories[i % 3],
+        tipePenilaian: 'POINT'
+      }
+    });
+  }
+
+  // Recalculate and update tryout total score based on sum of TryoutSoal points
+  const totalPoints = await database.tryoutSoal.aggregate({
+    where: { tryoutId: tryoutMain.id },
+    _sum: { point: true }
+  });
+  await database.tryout.update({
+    where: { id: tryoutMain.id },
+    data: { point: totalPoints._sum.point || 0 }
+  });
+
+  console.log('PaketLatihan, Tryout, and TryoutSoal stats seeded.');
+
+  // Seed FAQ chatbot
+  console.log('Seeding FAQ chatbot...');
+  const faqs = [
+    { question: 'Cara Lihat Pembahasan Tryout', answer: 'Klik menu paket saya > pilih tryout > klik tombol pembahasan pada tryout yang sudah selesai.', orderNo: 1 },
+    { question: 'Cara Gabung Grup Telegram', answer: 'Link grup Telegram tersedia di dashboard setelah pembelian paket Anda dikonfirmasi.', orderNo: 2 },
+    { question: 'Cara Reset Password Akun', answer: 'Masuk ke menu profile > pilih opsi ganti password, atau hubungi admin jika lupa password.', orderNo: 3 },
+    { question: 'Cara Akses Rekaman Bimbel', answer: 'Klik menu bimbel > klik tombol tonton pada tab rekaman', orderNo: 4 },
+    { question: 'Pembelian Belum Terkonfirmasi ?', answer: 'Kirim bukti transfer ke WhatsApp admin melalui tombol Hubungi Chat WA.', orderNo: 5 }
+  ];
+
+  for (const faq of faqs) {
+    await database.faqChatbot.create({
+      data: {
+        question: faq.question,
+        answer: faq.answer,
+        orderNo: faq.orderNo,
+        isActive: true,
+      }
+    });
+  }
+  console.log('FAQ chatbot items seeded.');
 
   // 7. Seed Feedback Setting
   await database.feedbackSetting.create({

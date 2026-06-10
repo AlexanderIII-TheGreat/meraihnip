@@ -46,6 +46,8 @@ const TicketList: React.FC = () => {
   const isMobile = useIsMobile();
   const [tickets, setTickets] = useState<Ticket[]>([]);
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+  const [faqs, setFaqs] = useState<Array<{ id: number; question: string; answer: string }>>([]);
+  const [expandedFaqId, setExpandedFaqId] = useState<number | null>(null);
   const [error, setError] = useState<string>('');
   const [selectedTicket, setSelectedTicket] = useState<Ticket | null>(null);
   const [isChatOpen, setIsChatOpen] = useState<boolean>(false);
@@ -90,10 +92,21 @@ useEffect(() => {
   console.log("Updated Tickets:", tickets);
 }, [tickets]);
 
+  const fetchFaqs = async () => {
+    try {
+      const res = await getData<{ list: any[] }>('faq-chatbot');
+      if (res && !(res as any).error) {
+        setFaqs((res as any).list || []);
+      }
+    } catch (err) {
+      console.error('Failed to fetch FAQs:', err);
+    }
+  };
 
   // hanya sekali jalan saat mount
   useEffect(() => {
     fetchTickets();
+    fetchFaqs();
     getData('whatsapp-admin/public')
       .then((res: any) => {
         if (res?.nomor) {
@@ -102,6 +115,51 @@ useEffect(() => {
       })
       .catch((err) => console.error('Failed to fetch WA number', err));
   }, []);
+
+  const toggleFaq = (id: number) => {
+    setExpandedFaqId(expandedFaqId === id ? null : id);
+  };
+
+  const renderFaqSection = () => {
+    if (faqs.length === 0) return null;
+
+    return (
+      <div className="mb-10 bg-white rounded-2xl border border-gray-100 overflow-hidden shadow-sm">
+        <div className="p-6 border-b border-gray-50 bg-gray-50/50">
+          <h2 className="text-xl font-bold text-indigo-950 tracking-tight">Bantuan</h2>
+          <p className="text-sm font-medium text-gray-500 mt-1">Pertanyaan yang sering diajukan</p>
+        </div>
+        <div className="p-6 grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-4">
+          {faqs.map((faq) => {
+            const isExpanded = expandedFaqId === faq.id;
+            return (
+              <div 
+                key={faq.id} 
+                className="border border-gray-100 rounded-xl overflow-hidden transition-all duration-200 hover:border-blue-100 hover:shadow-sm"
+              >
+                <button
+                  onClick={() => toggleFaq(faq.id)}
+                  className="w-full py-4 px-5 flex items-center justify-between text-left font-bold text-indigo-950 text-sm hover:bg-blue-50/10 transition-colors"
+                >
+                  <span className="flex items-center gap-2">
+                    <span className="text-blue-600 font-black">
+                      {isExpanded ? 'v ' : '> '}
+                    </span>
+                    {faq.question}
+                  </span>
+                </button>
+                {isExpanded && (
+                  <div className="px-5 pb-4 pt-1 text-xs font-medium text-gray-500 border-t border-gray-50 bg-gray-50/30 leading-relaxed">
+                    {faq.answer}
+                  </div>
+                )}
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    );
+  };
 
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => {
@@ -191,6 +249,9 @@ useEffect(() => {
         </div>
 
         <div className="p-5 space-y-6">
+          {/* FAQ Accordion */}
+          {renderFaqSection()}
+
           {/* Action Buttons */}
           <div className="space-y-3">
             <button
@@ -405,6 +466,9 @@ useEffect(() => {
 
   return (
     <div className="max-w-4xl mx-auto p-6 bg-white rounded-lg shadow-lg mt-8">
+      {/* FAQ Accordion */}
+      {renderFaqSection()}
+
       <div className="flex justify-between items-center mb-6">
         <h1 className="text-2xl font-bold text-indigo-950">My Tickets</h1>
         <div className="flex gap-3">

@@ -327,84 +327,97 @@ export default function PembahasanTryout({ isBimbel }: any) {
                     Total Waktu: {konversiDetikKeWaktu(e.duration)}
                   </p>
 
-                  <div className="mb-6 overflow-x-auto">
-                    <table className="w-full text-sm text-left text-gray-600">
-                      <thead className="text-xs text-gray-700 uppercase bg-gray-50">
-                        <tr>
-                          <th scope="col" className="px-4 py-2">Topik</th>
-                          <th scope="col" className="px-4 py-2 text-right">Durasi</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        {e.subCategory?.map((sub: any, idx: number) => (
-                          sub.subcategory && (
-                            <tr key={idx} className="bg-white border-b hover:bg-gray-50">
-                              <td className="px-4 py-2 font-medium">{sub.subcategory}</td>
-                              <td className="px-4 py-2 text-right font-mono">
-                                {konversiDetikKeWaktu(sub.duration)}
-                              </td>
-                            </tr>
-                          )
-                        ))}
-                      </tbody>
-                    </table>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 items-center mb-6">
+                    {/* Left Side: Score Stats */}
+                    <div>
+                      {e.tipe_penilaian === 'BENAR_SALAH' ? (
+                        <div className="space-y-3 text-sm font-semibold">
+                          <div className="flex justify-between items-center pb-1.5 border-b border-gray-50">
+                            <span className="text-gray-400">Jumlah Soal:</span>
+                            <span className="text-indigo-950 font-black">{e.count_soal}</span>
+                          </div>
+                          <div className="flex justify-between items-center pb-1.5 border-b border-gray-50">
+                            <span className="text-gray-400">Skor Anda:</span>
+                            <span className="text-indigo-900 font-black">{e.all_point}<span className="text-gray-400 font-normal">/{e.maxPoint}</span></span>
+                          </div>
+                          <div className="flex justify-between items-center pb-1.5 border-b border-gray-50 text-green-600">
+                            <span>Benar:</span>
+                            <span className="font-black">{e.answer_right}</span>
+                          </div>
+                          <div className="flex justify-between items-center pb-1.5 border-b border-gray-50 text-red-500">
+                            <span>Salah:</span>
+                            <span className="font-black">{e.answer_wrong}</span>
+                          </div>
+                          <div className="flex justify-between items-center pb-1.5 border-b border-gray-50 text-amber-500">
+                            <span>Tidak Terjawab:</span>
+                            <span className="font-black">{e.not_answer}</span>
+                          </div>
+                        </div>
+                      ) : (
+                        <div className="space-y-2 text-xs font-semibold">
+                          <div className="flex justify-between items-center pb-1.5 border-b border-gray-50 text-sm">
+                            <span className="text-gray-400">Jumlah Soal:</span>
+                            <span className="text-indigo-950 font-black">{e.count_soal}</span>
+                          </div>
+                          <div className="flex justify-between items-center pb-1.5 border-b border-gray-50 text-sm">
+                            <span className="text-gray-400">Skor Anda:</span>
+                            <span className="text-indigo-900 font-black">{e.all_point}<span className="text-gray-400 font-normal">/{e.maxPoint}</span></span>
+                          </div>
+                          <div className="flex justify-between items-center text-sky-800">
+                            <span>5 Point:</span>
+                            <span className="font-bold">{e?.point5 || 0}</span>
+                          </div>
+                          <div className="flex justify-between items-center text-sky-600">
+                            <span>4 Point:</span>
+                            <span className="font-bold">{e?.point4 || 0}</span>
+                          </div>
+                          <div className="flex justify-between items-center text-sky-500">
+                            <span>3 Point:</span>
+                            <span className="font-bold">{e?.point3 || 0}</span>
+                          </div>
+                          <div className="flex justify-between items-center text-sky-400">
+                            <span>2 Point:</span>
+                            <span className="font-bold">{e?.point2 || 0}</span>
+                          </div>
+                          <div className="flex justify-between items-center text-sky-300">
+                            <span>1 Point:</span>
+                            <span className="font-bold">{e?.point1 || 0}</span>
+                          </div>
+                        </div>
+                      )}
+                    </div>
+
+                    {/* Right Side: Donut Chart */}
+                    <div className="w-full h-40 flex justify-center items-center">
+                      <CategoryChart item={e} type={e.tipe_penilaian} />
+                    </div>
                   </div>
 
-                  <div className="grid grid-cols-2 gap-4 mb-6">
-                    <div className="p-3 bg-gray-50 rounded-lg text-center">
-                      <p className="text-xs text-gray-500 uppercase font-bold">Jumlah Soal</p>
-                      <p className="text-lg font-bold text-gray-800">{e.count_soal}</p>
+                  {/* Topics Duration Table */}
+                  <div className="mt-4 pt-4 border-t border-gray-50">
+                    <p className="text-xs font-bold text-gray-400 mb-2">Durasi Pengerjaan per Topik</p>
+                    <div className="overflow-x-auto max-h-36 no-scrollbar overflow-y-auto">
+                      <table className="w-full text-xs text-left text-gray-600">
+                        <thead className="text-xs text-gray-700 uppercase bg-gray-50">
+                          <tr>
+                            <th scope="col" className="px-3 py-1.5">Topik</th>
+                            <th scope="col" className="px-3 py-1.5 text-right">Durasi</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {e.subCategory?.map((sub: any, idx: number) => (
+                            sub.subcategory && (
+                              <tr key={idx} className="bg-white border-b hover:bg-gray-50">
+                                <td className="px-3 py-1.5 font-medium">{sub.subcategory}</td>
+                                <td className="px-3 py-1.5 text-right font-mono">
+                                  {konversiDetikKeWaktu(sub.duration)}
+                                </td>
+                              </tr>
+                            )
+                          ))}
+                        </tbody>
+                      </table>
                     </div>
-                    <div className="p-3 bg-gray-50 rounded-lg text-center">
-                      <p className="text-xs text-gray-500 uppercase font-bold">Skor Anda</p>
-                      <p className="text-lg font-bold text-indigo-600">{e.all_point}<span className="text-gray-400 text-sm">/{e.maxPoint}</span></p>
-                    </div>
-                    
-                    {e.tipe_penilaian === 'BENAR_SALAH' && (
-                      <>
-                        <div className="p-3 bg-green-50 rounded-lg text-center border border-green-100">
-                          <p className="text-xs text-green-600 uppercase font-bold">Benar</p>
-                          <p className="text-lg font-bold text-green-700">{e.answer_right}</p>
-                        </div>
-                        <div className="p-3 bg-red-50 rounded-lg text-center border border-red-100">
-                          <p className="text-xs text-red-600 uppercase font-bold">Salah</p>
-                          <p className="text-lg font-bold text-red-700">{e.answer_wrong}</p>
-                        </div>
-                        <div className="p-3 bg-yellow-50 rounded-lg text-center border border-yellow-100 col-span-2">
-                          <p className="text-xs text-yellow-600 uppercase font-bold">Tidak Terjawab</p>
-                          <p className="text-lg font-bold text-yellow-700">{e.not_answer}</p>
-                        </div>
-                      </>
-                    )}
-                  </div>
-
-                  {e.tipe_penilaian === 'POINT' && (
-                    <div className="grid grid-cols-5 gap-2 mb-6 text-center text-xs">
-                      <div className="bg-gray-50 p-2 rounded">
-                        <span className="block font-bold text-gray-400">5 Poin</span>
-                        <span className="font-bold text-indigo-600">{e?.point5}</span>
-                      </div>
-                      <div className="bg-gray-50 p-2 rounded">
-                        <span className="block font-bold text-gray-400">4 Poin</span>
-                        <span className="font-bold text-indigo-600">{e?.point4}</span>
-                      </div>
-                      <div className="bg-gray-50 p-2 rounded">
-                        <span className="block font-bold text-gray-400">3 Poin</span>
-                        <span className="font-bold text-indigo-600">{e?.point3}</span>
-                      </div>
-                      <div className="bg-gray-50 p-2 rounded">
-                        <span className="block font-bold text-gray-400">2 Poin</span>
-                        <span className="font-bold text-indigo-600">{e?.point2}</span>
-                      </div>
-                      <div className="bg-gray-50 p-2 rounded">
-                        <span className="block font-bold text-gray-400">1 Poin</span>
-                        <span className="font-bold text-indigo-600">{e?.point1}</span>
-                      </div>
-                    </div>
-                  )}
-
-                  <div className="h-[250px]">
-                    <CategoryChart item={e} type={e.tipe_penilaian} />
                   </div>
                 </div>
                 <div className="bg-white w-full px-5 py-8 md:px-10 md:py-10 rounded-2xl min-h-[450px]">

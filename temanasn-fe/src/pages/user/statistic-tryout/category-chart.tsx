@@ -1,127 +1,101 @@
-import React from 'react';
-import { PieChart, Pie, Sector, Cell, ResponsiveContainer } from 'recharts';
-import { useIsMobile } from '@/hooks/use-is-mobile';
-
-const renderActiveShape = (props: any) => {
-  const RADIAN = Math.PI / 180;
-  const {
-    cx,
-    cy,
-    midAngle,
-    innerRadius,
-    outerRadius,
-    startAngle,
-    endAngle,
-    fill,
-    payload,
-    name,
-    value,
-    percent,
-  } = props;
-  const sin = Math.sin(-RADIAN * midAngle);
-  const cos = Math.cos(-RADIAN * midAngle);
-  const sx = cx + (outerRadius + 10) * cos;
-  const sy = cy + (outerRadius + 10) * sin;
-  const mx = cx + (outerRadius + 30) * cos;
-  const my = cy + (outerRadius + 30) * sin;
-  const ex = mx + (cos >= 0 ? 1 : -1) * 22;
-  const ey = my;
-  const textAnchor = cos >= 0 ? 'start' : 'end';
-
-  return (
-    <g>
-      <text x={cx} y={cy} dy={8} textAnchor="middle" fill={fill}>
-        {payload.name}
-      </text>
-      <Sector
-        cx={cx}
-        cy={cy}
-        innerRadius={innerRadius}
-        outerRadius={outerRadius}
-        startAngle={startAngle}
-        endAngle={endAngle}
-        fill={fill}
-      />
-      <Sector
-        cx={cx}
-        cy={cy}
-        startAngle={startAngle}
-        endAngle={endAngle}
-        innerRadius={outerRadius + 6}
-        outerRadius={outerRadius + 10}
-        fill={fill}
-      />
-      <path
-        d={`M${sx},${sy}L${mx},${my}L${ex},${ey}`}
-        stroke={fill}
-        fill="none"
-      />
-      <circle cx={ex} cy={ey} r={2} fill={fill} stroke="none" />
-      <text
-        x={ex + (cos >= 0 ? 1 : -1) * 12}
-        y={ey}
-        textAnchor={textAnchor}
-        fill="#333"
-      >{`${name}`}</text>
-      <text
-        x={ex + (cos >= 0 ? 1 : -1) * 12}
-        y={ey}
-        dy={18}
-        textAnchor={textAnchor}
-        fill="#999"
-      >
-        {`${value} ( ${(percent * 100).toFixed(2)}%)`}
-      </text>
-    </g>
-  );
-};
+import React, { useState } from 'react';
+import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip } from 'recharts';
 
 export default function CategoryChart({ item, type = 'BENAR_SALAH' }: any) {
-  const [activeIndex, setActiveIndex] = React.useState(-1);
-  const onPieEnter = (_: any, index: number) => {
-    setActiveIndex(index);
-  };
+  const [hoveredIndex, setHoveredIndex] = useState<number>(-1);
+
   const COLORS =
     type === 'BENAR_SALAH'
-      ? ['#00C49F', 'red', '#FFBB28']
-      : ['violet', 'green', '#ff7300', '#FF8042', 'red', 'blue'];
+      ? ['#0ea5e9', '#ef4444', '#cbd5e1'] // Sky Blue (Correct), Coral Red (Incorrect), Slate Gray (Unanswered)
+      : ['#0369a1', '#0ea5e9', '#38bdf8', '#7dd3fc', '#bae6fd']; // Monochromatic blue gradient for points
 
   const data =
     type === 'BENAR_SALAH'
       ? [
-          { name: 'Benar', value: item.answer_right },
-          { name: 'Salah', value: item.answer_wrong },
-          { name: 'Tidak Dijawab', value: item.not_answer },
+          { name: 'Benar', value: item.answer_right || 0 },
+          { name: 'Salah', value: item.answer_wrong || 0 },
+          { name: 'Tidak Dijawab', value: item.not_answer || 0 },
         ]
       : [
-          { name: '5 Point', value: item.point5 },
-          { name: '4 Point', value: item.point4 },
-          { name: '3 Point', value: item.point3 },
-          { name: '2 Point', value: item.point2 },
-          { name: '1 Point', value: item.point1 },
+          { name: '5 Point', value: item.point5 || 0 },
+          { name: '4 Point', value: item.point4 || 0 },
+          { name: '3 Point', value: item.point3 || 0 },
+          { name: '2 Point', value: item.point2 || 0 },
+          { name: '1 Point', value: item.point1 || 0 },
         ];
 
-  const isMobile = useIsMobile();
+  const total = data.reduce((sum, entry) => sum + entry.value, 0);
 
   return (
     <ResponsiveContainer width="100%" height="100%">
       <PieChart>
         <Pie
-          activeIndex={activeIndex}
-          activeShape={renderActiveShape}
           data={data}
           cx="50%"
           cy="50%"
-          innerRadius={isMobile ? 40 : 60}
-          outerRadius={isMobile ? 60 : 80}
-          fill="#8884d8"
+          innerRadius={45}
+          outerRadius={60}
+          paddingAngle={3}
+          cornerRadius={4}
           dataKey="value"
-          onMouseEnter={onPieEnter}
+          onMouseEnter={(_, index) => setHoveredIndex(index)}
+          onMouseLeave={() => setHoveredIndex(-1)}
         >
           {data.map((_, index) => (
-            <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+            <Cell 
+              key={`cell-${index}`} 
+              fill={COLORS[index % COLORS.length]}
+              style={{
+                filter: hoveredIndex === index ? 'drop-shadow(0px 2px 4px rgba(0, 0, 0, 0.15))' : 'none',
+                cursor: 'pointer',
+                transition: 'all 0.2s ease'
+              }}
+            />
           ))}
         </Pie>
+        
+        {/* Dynamic Center Text */}
+        <text 
+          x="50%" 
+          y="46%" 
+          textAnchor="middle" 
+          dominantBaseline="middle" 
+          style={{ 
+            fontSize: '9px', 
+            fill: '#94a3b8', 
+            fontWeight: 800, 
+            fontFamily: 'Poppins, sans-serif',
+            letterSpacing: '0.05em',
+            textTransform: 'uppercase'
+          }}
+        >
+          {hoveredIndex !== -1 ? data[hoveredIndex].name : 'TOTAL'}
+        </text>
+        <text 
+          x="50%" 
+          y="58%" 
+          textAnchor="middle" 
+          dominantBaseline="middle" 
+          style={{ 
+            fontSize: '18px', 
+            fill: '#0f172a', 
+            fontWeight: 800, 
+            fontFamily: 'Poppins, sans-serif' 
+          }}
+        >
+          {hoveredIndex !== -1 ? data[hoveredIndex].value : total}
+        </text>
+
+        <Tooltip 
+          contentStyle={{ 
+            backgroundColor: 'rgba(255, 255, 255, 0.98)', 
+            borderRadius: '12px', 
+            border: '1px solid #e2e8f0',
+            boxShadow: '0 4px 12px rgba(15, 23, 42, 0.08)',
+            fontSize: '12px',
+            fontFamily: 'Poppins, sans-serif'
+          }} 
+        />
       </PieChart>
     </ResponsiveContainer>
   );

@@ -18,7 +18,8 @@ export default function PointChartBenarSalah({ data }: any) {
       <BarChart
         data={data?.map((item: any) => ({
           name: item.subcategory,
-          Benar: item.correct,
+          Benar: item.correct || 0,
+          Salah: item.wrong || 0,
         }))}
         margin={{
           top: 5,
@@ -34,7 +35,6 @@ export default function PointChartBenarSalah({ data }: any) {
           angle={isMobile ? -45 : 0} 
           textAnchor={isMobile ? "end" : "middle"} 
           fontSize={isMobile ? 10 : 12}
-          tick={false}
         />
 
         <YAxis />
@@ -42,8 +42,13 @@ export default function PointChartBenarSalah({ data }: any) {
         <Legend />
         <Bar
           dataKey="Benar"
-          fill="#82ca9d"
-          activeBar={<Rectangle fill="gold" stroke="purple" />}
+          fill="#0ea5e9"
+          radius={[4, 4, 0, 0]}
+        />
+        <Bar
+          dataKey="Salah"
+          fill="#ef4444"
+          radius={[4, 4, 0, 0]}
         />
       </BarChart>
     </ResponsiveContainer>

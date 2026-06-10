@@ -37,13 +37,15 @@ export default function PassingGradeChart({ data }: any) {
         <Legend />
         <Bar
           dataKey="Nilai"
-          fill="#82ca9d"
-          activeBar={<Rectangle fill="#60f789" stroke="blue" />}
+          fill="#0ea5e9"
+          activeBar={<Rectangle fill="#0284c7" stroke="blue" />}
+          radius={[4, 4, 0, 0]}
         />
         <Bar
           dataKey="KKM"
-          fill="#ecbbb2"
-          activeBar={<Rectangle fill="#ff856c" stroke="purple" />}
+          fill="#cbd5e1"
+          activeBar={<Rectangle fill="#94a3b8" stroke="purple" />}
+          radius={[4, 4, 0, 0]}
         />
       </BarChart>
     </ResponsiveContainer>

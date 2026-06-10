@@ -583,6 +583,7 @@ const statistic = async (req, res, next) => {
       id: Joi.number().required(),
     });
     const validate = await schema.validateAsync(req.query);
+    await database.$executeRawUnsafe('SET SESSION group_concat_max_len = 100000;');
     const result = await database.$queryRaw`
 SELECT
     t.id,
