@@ -147,7 +147,7 @@ export default function SideMenu({
 
   return (
     <aside
-      className={`flex flex-col h-full py-0 lg:py-8 overflow-y-auto no-scrollbar
+      className={`flex flex-col h-full py-0 lg:py-8 overflow-y-auto no-scrollbar flex-shrink-0
         bg-white text-slate-700 
         border-r border-gray-200 
         rtl:border-r-0 rtl:border-l 

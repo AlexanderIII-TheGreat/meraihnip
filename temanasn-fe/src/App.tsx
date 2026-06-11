@@ -198,18 +198,18 @@ export default function App({ children }: LayoutProps) {
           <motion.div
             animate={{ width: showMenu ? 280 : 80 }}
             transition={{ type: 'spring', damping: 25, stiffness: 200 }}
-            onMouseEnter={() => setShowMenu(true)}
-            onMouseLeave={() => setShowMenu(false)}
             className="flex-shrink-0 h-screen sticky top-0 bg-white dark:bg-gray-900 z-50 flex flex-col border-r dark:border-gray-700 overflow-hidden"
           >
-            <SideMenu
-              classNames="flex h-full"
-              menuOpened={menuOpened}
-              setMenuOpened={setMenuOpened}
-              toggleMenu={toggleDropdown}
-              isDesktopLayout={isDesktopLayout}
-              isCollapsed={!showMenu}
-            />
+            <div className="w-[280px] h-full flex flex-col">
+              <SideMenu
+                classNames="flex h-full"
+                menuOpened={menuOpened}
+                setMenuOpened={setMenuOpened}
+                toggleMenu={toggleDropdown}
+                isDesktopLayout={isDesktopLayout}
+                isCollapsed={!showMenu}
+              />
+            </div>
           </motion.div>
         ) : (
           <AnimatePresence>
