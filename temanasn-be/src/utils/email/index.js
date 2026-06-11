@@ -44,7 +44,7 @@ const sendMail = async (data) => {
 
     const renderData = {
       platform_name: platformName,
-      platform_logo: platformLogo,
+      platform_logo: 'cid:platform_logo',
       platform_url: platformUrl,
       ...data
     };
@@ -54,6 +54,13 @@ const sendMail = async (data) => {
       to, // list of receivers
       subject, // Subject line
       html: mustache.render(fileTemplate, renderData),
+      attachments: [
+        {
+          filename: 'logo-meraihnip.png',
+          path: 'public/logo-meraihnip.png',
+          cid: 'platform_logo' // matches the cid in renderData
+        }
+      ]
     };
 
     const info = await transporter.sendMail(mailOptions);
