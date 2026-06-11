@@ -83,11 +83,11 @@ export default function PointChartPenilaian({ data }: any) {
           }} 
         />
         <Legend />
-        <Bar dataKey="point-5" name="5 Point" stackId="points" fill="#0369a1" radius={[4, 4, 0, 0]} />
-        <Bar dataKey="point-4" name="4 Point" stackId="points" fill="#0ea5e9" radius={[4, 4, 0, 0]} />
-        <Bar dataKey="point-3" name="3 Point" stackId="points" fill="#38bdf8" radius={[4, 4, 0, 0]} />
-        <Bar dataKey="point-2" name="2 Point" stackId="points" fill="#7dd3fc" radius={[4, 4, 0, 0]} />
-        <Bar dataKey="point-1" name="1 Point" stackId="points" fill="#bae6fd" radius={[4, 4, 0, 0]} />
+        <Bar dataKey="point-5" name="5 Point" stackId="points" fill="#1e3a8a" radius={[4, 4, 0, 0]} />
+        <Bar dataKey="point-4" name="4 Point" stackId="points" fill="#2563eb" radius={[4, 4, 0, 0]} />
+        <Bar dataKey="point-3" name="3 Point" stackId="points" fill="#3b82f6" radius={[4, 4, 0, 0]} />
+        <Bar dataKey="point-2" name="2 Point" stackId="points" fill="#60a5fa" radius={[4, 4, 0, 0]} />
+        <Bar dataKey="point-1" name="1 Point" stackId="points" fill="#93c5fd" radius={[4, 4, 0, 0]} />
       </ComposedChart>
     </ResponsiveContainer>
   );

@@ -30,7 +30,7 @@ const generateIcon = (status: string) => {
     case 'FAILED':
       return <IconCircleX className="text-red-500" />;
     default:
-      return <IconBell className="text-[#14B8A6]" />;
+      return <IconBell className="text-primary" />;
   }
 };
 
@@ -117,9 +117,9 @@ export default function MyClass() {
         {/* Mobile Header - Blue Gradient container */}
         <div className="relative">
           {/* Isolated Background layer with clipping for animations */}
-          <div className="absolute inset-0 bg-gradient-to-br from-[#07A97B] to-[#00419C] rounded-b-[40px] shadow-lg overflow-hidden">
+          <div className="absolute inset-0 bg-gradient-to-br from-[#1E3A8A] to-[#0B192C] rounded-b-[40px] shadow-lg overflow-hidden">
             <div className="absolute top-[-10%] right-[-10%] w-64 h-64 bg-white/10 rounded-full blur-3xl animate-pulse"></div>
-            <div className="absolute bottom-[-20%] left-[-10%] w-48 h-48 bg-[#14B8A6]/20 rounded-full blur-2xl"></div>
+            <div className="absolute bottom-[-20%] left-[-10%] w-48 h-48 bg-[#1E3A8A]/20 rounded-full blur-2xl"></div>
           </div>
 
           {/* Content Layer - No overflow-hidden to allow dropdowns to pop out. Higher Z to stay above search */}
@@ -139,7 +139,7 @@ export default function MyClass() {
                 >
                   <IconBell size={22} className="text-white" />
                   {(homeData?.notifikasi || [])?.filter((e: any) => !e?.isRead).length > 0 && (
-                    <div className="absolute top-2.5 right-2.5 w-2 h-2 bg-red-500 rounded-full border border-[#14B8A6]"></div>
+                    <div className="absolute top-2.5 right-2.5 w-2 h-2 bg-red-500 rounded-full border border-[#1E3A8A]"></div>
                   )}
                 </button>
 
@@ -163,13 +163,13 @@ export default function MyClass() {
                       <div className="flex border-b border-gray-50">
                         <button 
                           onClick={() => setNotificationTab('SYSTEM')}
-                          className={`flex-1 py-3 text-[10px] font-black tracking-widest uppercase transition-colors ${notificationTab === 'SYSTEM' ? 'text-[#14B8A6] border-b-2 border-[#14B8A6]' : 'text-gray-400'}`}
+                          className={`flex-1 py-3 text-[10px] font-black tracking-widest uppercase transition-colors ${notificationTab === 'SYSTEM' ? 'text-primary border-b-2 border-primary' : 'text-gray-400'}`}
                         >
                           Untuk Kamu
                         </button>
                         <button 
                           onClick={() => setNotificationTab('USER')}
-                          className={`flex-1 py-3 text-[10px] font-black tracking-widest uppercase transition-colors ${notificationTab === 'USER' ? 'text-[#14B8A6] border-b-2 border-[#14B8A6]' : 'text-gray-400'}`}
+                          className={`flex-1 py-3 text-[10px] font-black tracking-widest uppercase transition-colors ${notificationTab === 'USER' ? 'text-primary border-b-2 border-primary' : 'text-gray-400'}`}
                         >
                           Terbaru & Update
                         </button>
@@ -199,7 +199,7 @@ export default function MyClass() {
                                   <p className="text-[10px] font-medium text-gray-500 line-clamp-2 leading-relaxed">
                                     {e.keterangan || e?.notification?.keterangan}
                                   </p>
-                                  <span className="text-[9px] font-bold text-[#14B8A6] mt-2 block uppercase tracking-tighter">
+                                  <span className="text-[9px] font-bold text-primary mt-2 block uppercase tracking-tighter">
                                     {moment(e.createdAt || e?.notification?.createdAt).fromNow()}
                                   </span>
                                 </div>
@@ -215,7 +215,7 @@ export default function MyClass() {
 
                       <button
                         onClick={handleReadAll}
-                        className="w-full py-4 text-[10px] font-black text-[#14B8A6] bg-gray-50 hover:bg-gray-100 transition-colors uppercase tracking-widest"
+                        className="w-full py-4 text-[10px] font-black text-primary bg-gray-50 hover:bg-gray-100 transition-colors uppercase tracking-widest"
                       >
                         Tandai semua sudah dibaca
                       </button>
@@ -239,7 +239,7 @@ export default function MyClass() {
                   onChange={(e) => setSearchQuery(e.target.value)}
                 />
               </div>
-              <button className="w-11 h-11 bg-[#14B8A6]/10 text-[#14B8A6] rounded-[15px] flex items-center justify-center active:scale-90 transition-transform">
+              <button className="w-11 h-11 bg-primary/10 text-primary rounded-[15px] flex items-center justify-center active:scale-90 transition-transform">
                 <IconFilter size={20} />
               </button>
             </div>
@@ -250,7 +250,7 @@ export default function MyClass() {
         <div className="px-6 mt-16">
           <div className="flex items-center justify-between mb-6">
             <h2 className="text-lg font-black text-indigo-950 uppercase tracking-widest pl-1">Paket Aktif</h2>
-            <span className="bg-[#14B8A6]/10 text-[#14B8A6] text-[10px] font-black px-3 py-1.5 rounded-full uppercase tracking-wider">
+            <span className="bg-primary/10 text-primary text-[10px] font-black px-3 py-1.5 rounded-full uppercase tracking-wider">
               {filteredList.length} Paket
             </span>
           </div>
@@ -277,7 +277,7 @@ export default function MyClass() {
                     <span className="text-[10px] font-black text-emerald-500 uppercase tracking-widest mb-2 block">
                       {item.paketPembelian?.category?.nama || 'TERBARU 2024'}
                     </span>
-                    <h3 className="text-lg font-black text-indigo-950 leading-[1.3] mb-3 group-hover:text-[#14B8A6] transition-colors">
+                    <h3 className="text-lg font-black text-indigo-950 leading-[1.3] mb-3 group-hover:text-primary transition-colors">
                       {item.paketPembelian?.nama}
                     </h3>
                     <div 
@@ -290,7 +290,7 @@ export default function MyClass() {
 
                     <button 
                       onClick={() => handleStartLearning(item)}
-                      className="w-full bg-[#14B8A6] hover:bg-[#0F766E] text-white font-black py-4 rounded-[22px] shadow-lg shadow-teal-600/20 active:scale-95 transition-all text-sm uppercase tracking-widest flex items-center justify-center gap-2 group/btn"
+                      className="w-full bg-primary hover:bg-[#1E40AF] text-white font-black py-4 rounded-[22px] shadow-lg shadow-blue-600/20 active:scale-95 transition-all text-sm uppercase tracking-widest flex items-center justify-center gap-2 group/btn"
                     >
                       Mulai Belajar
                       <IconChevronRight size={18} className="transition-transform group-hover/btn:translate-x-1" />

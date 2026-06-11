@@ -28,7 +28,7 @@ export default function BottomNav() {
             key={item.label}
             onClick={() => navigate(item.path)}
             className={`flex flex-col items-center gap-1 transition-colors ${
-              isActive ? 'text-[#14B8A6]' : 'text-gray-400'
+              isActive ? 'text-[#1E3A8A]' : 'text-gray-400'
             }`}
           >
             <div className={`${isActive ? 'scale-110' : ''} transition-transform`}>

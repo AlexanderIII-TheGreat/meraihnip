@@ -52,7 +52,7 @@ const MobileCardTryout = ({ data, id, isBimbel }: any) => {
       <div className="grid grid-cols-2 gap-3 mb-3">
         <button 
           onClick={() => navigate(isBimbel ? `/my-class/${id}/bimbel/mini-test/${data.id}/${tryoutData?.id}` : `/my-class/${id}/tryout/${data.id}/${tryoutData?.id}`)}
-          className="bg-[#14B8A6] text-white font-black py-2.5 rounded-xl text-xs uppercase tracking-widest active:scale-95 transition-transform"
+          className="bg-[#1E3A8A] text-white font-black py-2.5 rounded-xl text-xs uppercase tracking-widest active:scale-95 transition-transform"
         >
           {isDone ? 'Kerjakan Lagi' : 'Kerjakan'}
         </button>
@@ -66,7 +66,7 @@ const MobileCardTryout = ({ data, id, isBimbel }: any) => {
 
       <button 
         onClick={() => navigate(isBimbel ? `/my-class/${id}/bimbel/mini-test/${data.id}/${tryoutData?.id}/ranking` : `/my-class/${id}/tryout/${data.id}/${tryoutData?.id}/ranking`)}
-        className="w-full bg-gray-50 text-[#14B8A6] font-black py-2.5 rounded-xl text-xs uppercase tracking-widest flex items-center justify-center gap-2 active:scale-95 transition-transform"
+        className="w-full bg-gray-50 text-[#1E3A8A] font-black py-2.5 rounded-xl text-xs uppercase tracking-widest flex items-center justify-center gap-2 active:scale-95 transition-transform"
       >
         <IconChartBar size={16} />
         Lihat Ranking
@@ -111,14 +111,14 @@ const CardTryout = ({ data, id, isBimbel }: any) => (
               ? `/my-class/${id}/bimbel/mini-test/${data.id}/${data?.paketLatihan?.id}/ranking`
               : `/my-class/${id}/tryout/${data.id}/${data?.PaketLatihan?.id}/ranking`
           }
-          className="text-[#14B8A6] underline text-sm"
+          className="text-[#1E3A8A] underline text-sm"
         >
           Lihat Ranking
         </Link>
       </span>
     </div>
 
-    <div className="mb-6 bg-[#14B8A6]/10 px-4 py-3 text-[#0F766E] text-sm italic rounded">
+    <div className="mb-6 bg-[#1E3A8A]/10 px-4 py-3 text-[#1E3A8A] text-sm italic rounded">
       Ranking hanya dihitung pada saat pertama kali mengerjakan soal ini.
     </div>
 
@@ -223,13 +223,13 @@ export default function ListTryout() {
                     else if (tab.value === 'Bimbel') navigate(`/my-class/${id}/bimbel`);
                     else setSearchParams({ type: tab.value });
                   }}
-                  className={`flex-1 py-4 text-[13px] font-black transition-all relative whitespace-nowrap px-5 ${isActive ? 'text-[#14B8A6]' : 'text-gray-400'}`}
+                  className={`flex-1 py-4 text-[13px] font-black transition-all relative whitespace-nowrap px-5 ${isActive ? 'text-[#1E3A8A]' : 'text-gray-400'}`}
                 >
                   <span className="uppercase tracking-tight">{tab.label}</span>
                   {isActive && (
                     <motion.div 
                       layoutId="activeTabMobile"
-                      className="absolute bottom-0 left-0 right-0 h-1 bg-[#14B8A6] rounded-t-full"
+                      className="absolute bottom-0 left-0 right-0 h-1 bg-[#1E3A8A] rounded-t-full"
                     />
                   )}
                 </button>
@@ -240,9 +240,9 @@ export default function ListTryout() {
 
         <div className="px-6">
           {/* Info Important */}
-          <div className="bg-[#14B8A6]/5 rounded-2xl p-5 mb-6 border border-[#14B8A6]/20 flex gap-4">
-            <div className="w-10 h-10 rounded-full bg-[#14B8A6]/10 flex items-center justify-center flex-shrink-0">
-              <IconInfoCircle className="text-[#14B8A6]" size={20} />
+          <div className="bg-[#1E3A8A]/5 rounded-2xl p-5 mb-6 border border-[#1E3A8A]/20 flex gap-4">
+            <div className="w-10 h-10 rounded-full bg-[#1E3A8A]/10 flex items-center justify-center flex-shrink-0">
+              <IconInfoCircle className="text-[#1E3A8A]" size={20} />
             </div>
             <div>
               <h4 className="text-sm font-black text-indigo-950 mb-1">Info Penting</h4>

@@ -139,7 +139,7 @@ const MobileCardBimbel = ({ row, id, navigate, handleOpenLink }: any) => {
           disabled={!row.videoLink}
           className={`w-full py-3 rounded-xl font-black text-xs uppercase tracking-widest flex items-center justify-center gap-2 transition-all shadow-sm ${
             row.videoLink 
-              ? 'bg-[#14B8A6] text-white hover:bg-[#0D9488] active:scale-95 shadow-[#14B8A6]/20' 
+              ? 'bg-[#1E3A8A] text-white hover:bg-[#1e40af] active:scale-95 shadow-[#1E3A8A]/20' 
               : 'bg-gray-100 text-gray-300'
           }`}
         >
@@ -439,13 +439,13 @@ export default function UserIndex() {
                     if (tab.value === 'Materi') navigate(`/my-class/${id}/materi`);
                     else navigate(`/my-class/${id}/tryout?type=${tab.value}`);
                   }}
-                  className={`flex-1 py-4 text-[13px] font-black transition-all relative whitespace-nowrap px-5 ${isActive ? 'text-[#14B8A6]' : 'text-gray-400'}`}
+                  className={`flex-1 py-4 text-[13px] font-black transition-all relative whitespace-nowrap px-5 ${isActive ? 'text-[#1E3A8A]' : 'text-gray-400'}`}
                 >
                   <span className="uppercase tracking-tight">{tab.label}</span>
                   {isActive && (
                     <motion.div 
                       layoutId="activeTabMobile"
-                      className="absolute bottom-0 left-0 right-0 h-1 bg-[#14B8A6] rounded-t-full"
+                      className="absolute bottom-0 left-0 right-0 h-1 bg-[#1E3A8A] rounded-t-full"
                     />
                   )}
                 </button>
@@ -456,9 +456,9 @@ export default function UserIndex() {
 
         <div className="px-6 pb-20">
           {/* Info Important */}
-          <div className="bg-[#14B8A6]/5 rounded-2xl p-5 mb-6 border border-[#14B8A6]/20 flex gap-4">
-            <div className="w-10 h-10 rounded-full bg-[#14B8A6]/10 flex items-center justify-center flex-shrink-0">
-              <IconInfoCircle className="text-[#14B8A6]" size={20} />
+          <div className="bg-[#1E3A8A]/5 rounded-2xl p-5 mb-6 border border-[#1E3A8A]/20 flex gap-4">
+            <div className="w-10 h-10 rounded-full bg-[#1E3A8A]/10 flex items-center justify-center flex-shrink-0">
+              <IconInfoCircle className="text-[#1E3A8A]" size={20} />
             </div>
             <div>
               <h4 className="text-sm font-black text-indigo-950 mb-1">Jadwal Bimbel</h4>

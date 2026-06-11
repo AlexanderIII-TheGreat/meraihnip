@@ -53,7 +53,10 @@ export default function ResetPassword() {
 
   return (
     <>
-      <div className="min-h-[100vh] bg-gray-50 pt-20">
+      <div
+        style={{ backgroundImage: `linear-gradient(rgba(5, 10, 30, 0.62), rgba(5, 10, 30, 0.62)), url('/img/bg-astero.png')` }}
+        className="min-h-[100vh] bg-no-repeat bg-cover bg-center pt-20"
+      >
         <div className="flex min-h-full flex-1 flex-col justify-center py-12 sm:px-6 lg:px-8">
           <div className="sm:mx-auto sm:w-full sm:max-w-md">
             <img
@@ -61,7 +64,7 @@ export default function ResetPassword() {
               src={LOGO}
               alt="Your Company"
             />
-            <h2 className="mt-6 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
+            <h2 className="mt-6 text-center text-2xl font-bold leading-9 tracking-tight text-white">
               Lupa Kata Sandi
             </h2>
           </div>
@@ -118,13 +121,25 @@ export default function ResetPassword() {
             </div>
 
             <p className="mt-10 text-center text-sm text-gray-500">
-              Belum punya akun?{' '}
-              <Link
-                to="/auth/register"
-                className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500"
+              <span
+                style={{
+                  color: "white",
+                  padding: "0 4px",
+                  borderRadius: "4px",
+                }}
               >
-                Daftar sekarang
-              </Link>
+                Belum punya akun?{' '}
+                <Link
+                  to="/auth/register"
+                  className="font-semibold leading-6 text-[#1E3A8A] hover:text-[#1e40af]"
+                  style={{
+                    textDecoration: "underline",
+                    color: "#1E3A8A",
+                  }}
+                >
+                  Daftar sekarang
+                </Link>
+              </span>
             </p>
           </div>
         </div>

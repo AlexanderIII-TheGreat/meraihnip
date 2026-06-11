@@ -75,7 +75,7 @@ export default function PaketPembelian() {
             onClick={() => handleCategoryChange(item.value)}
             className={`px-6 py-2 rounded-full whitespace-nowrap text-sm font-medium transition-all shrink-0 ${
               isActive
-                ? "bg-[#0ea5e9] text-white shadow-md shadow-[#0ea5e9]/20"
+                ? "bg-[#1E3A8A] text-white shadow-md shadow-[#1E3A8A]/20"
                 : "bg-white text-[#64748b] border border-gray-100"
             }`}
           >
@@ -86,8 +86,8 @@ export default function PaketPembelian() {
       return (
         <button
           key={item.nama}
-          className={`py-3 px-6 border rounded text-[#0ea5e9] border-[#0ea5e9] hover:bg-[#0ea5e9] hover:shadow-[5px_5px_rgb(255,_0,_108,_0.4),_10px_10px_rgb(255,_0,_109,_0.22)] whitespace-nowrap flex-shrink-0 sm:whitespace-normal sm:flex-shrink sm:mr-2 sm:mb-5 transition-all ${
-            isActive ? " shadow-[5px_5px_rgb(255,_0,_108,_0.4),_10px_10px_rgb(255,_0,_109,_0.22)] bg-[#0ea5e9] text-white" : " bg-white"
+          className={`py-3 px-6 border rounded text-[#1E3A8A] border-[#1E3A8A] hover:bg-[#1E3A8A] hover:shadow-[5px_5px_rgb(255,_0,_108,_0.4),_10px_10px_rgb(255,_0,_109,_0.22)] whitespace-nowrap flex-shrink-0 sm:whitespace-normal sm:flex-shrink sm:mr-2 sm:mb-5 transition-all ${
+            isActive ? " shadow-[5px_5px_rgb(255,_0,_108,_0.4),_10px_10px_rgb(255,_0,_109,_0.22)] bg-[#1E3A8A] text-white" : " bg-white"
           } hover:text-white`}
           onClick={() => handleCategoryChange(item.value)}
         >
@@ -111,7 +111,7 @@ export default function PaketPembelian() {
       <div className="hidden md:block p-4">
         <BreadCrumb page={[{ name: "Paket Pembelian", link: "/paket-pembelian" }]} />
         <div className="flex justify-between items-start w-full mb-8">
-          <h1 className="text-2xl text-[#0ea5e9] font-bold">Paket Tryout</h1>
+          <h1 className="text-2xl text-[#1E3A8A] font-bold">Paket Tryout</h1>
           <Link to={"riwayat"} className="text-sm text-blue-700 hover:underline">
             Riwayat Pembelian
           </Link>
@@ -147,7 +147,7 @@ export default function PaketPembelian() {
       {/* MOBILE VIEW */}
       <div className="md:hidden fixed inset-0 z-50 bg-[#f8f9fa] overflow-y-auto overflow-x-hidden pb-10">
         <div className="bg-white px-5 py-4 flex items-center justify-between sticky top-0 z-20 border-b w-full">
-          <Link to="/" className="text-[#0ea5e9]">
+          <Link to="/" className="text-[#1E3A8A]">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2.5} stroke="currentColor" className="w-6 h-6">
               <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
             </svg>
@@ -179,7 +179,7 @@ export default function PaketPembelian() {
               placeholder="Cari paket belajar..."
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              className="w-full bg-white border border-gray-100 rounded-2xl py-3.5 pl-12 pr-4 text-sm shadow-sm focus:ring-2 focus:ring-[#0ea5e9]/10 focus:border-[#0ea5e9] transition-all placeholder:text-gray-400"
+              className="w-full bg-white border border-gray-100 rounded-2xl py-3.5 pl-12 pr-4 text-sm shadow-sm focus:ring-2 focus:ring-[#1E3A8A]/10 focus:border-[#1E3A8A] transition-all placeholder:text-gray-400"
             />
           </div>
         </div>

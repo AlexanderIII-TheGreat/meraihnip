@@ -19,7 +19,7 @@ const introMessages: ChatMessage[] = [
   {
     id: 'intro-1',
     role: 'assistant',
-    text: 'Halo! Selamat datang di MeraihNIP. Aku asisten virtual yang siap bantu kamu.',
+    text: 'Halo! Selamat datang di Astero. Aku asisten virtual yang siap bantu kamu.',
   },
   {
     id: 'intro-2',
@@ -175,7 +175,7 @@ export default function FaqChatWidget() {
               >
                 <IconChevronLeft size={18} />
               </button>
-              <p className="text-sm font-semibold">Asisten MeraihNIP</p>
+              <p className="text-sm font-semibold">Asisten Astero</p>
             </div>
             <button
               onClick={() => setIsOpen(false)}
@@ -258,7 +258,7 @@ export default function FaqChatWidget() {
                     onClick={handleOpenWhatsapp}
                     className="w-full text-left px-3 py-2 text-[12px] font-semibold rounded-xl border border-red-200 text-red-500 hover:bg-red-50 transition-colors"
                   >
-                    Hubungi Admin MeraihNIP (WhatsApp)
+                    Hubungi Admin Astero (WhatsApp)
                   </button>
                 </div>
 

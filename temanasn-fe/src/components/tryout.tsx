@@ -537,7 +537,7 @@ export default function OnGoingTryout({ isPembahasan, isBimbel }: any) {
               </div>
             </div>
             <div className="flex items-center gap-2">
-              <span className="bg-[#14B8A6]/10 text-[#14B8A6] px-3 py-1 rounded-full text-xs font-bold border border-[#14B8A6]/20">
+              <span className="bg-[#1E3A8A]/10 text-[#1E3A8A] px-3 py-1 rounded-full text-xs font-bold border border-[#1E3A8A]/20">
                 <Countdown
                   date={finishAt}
                   key={finishAt}
@@ -551,7 +551,7 @@ export default function OnGoingTryout({ isPembahasan, isBimbel }: any) {
           {/* Progress Bar */}
           <div className="w-full h-1 bg-gray-100 relative">
             <div
-              className="absolute left-0 top-0 h-full bg-[#14B8A6] transition-all duration-300"
+              className="absolute left-0 top-0 h-full bg-[#1E3A8A] transition-all duration-300"
               style={{ width: `${((onShow + 1) / soalId?.length) * 100}%` }}
             ></div>
           </div>
@@ -593,14 +593,14 @@ export default function OnGoingTryout({ isPembahasan, isBimbel }: any) {
                   }}
                   className={`w-full flex items-center gap-4 bg-white p-4 rounded-xl border transition-all duration-200 text-left ${
                     isSelected
-                      ? 'border-[#14B8A6] ring-1 ring-[#14B8A6]'
+                      ? 'border-[#1E3A8A] ring-1 ring-[#1E3A8A]'
                       : (isCorrectLabel ? 'border-green-500 ring-1 ring-green-500' : 'border-gray-200')
                   } ${isWrongLabel ? 'border-red-500 ring-1 ring-red-500' : ''}`}
                 >
                   <div className={`w-10 h-10 shrink-0 rounded-full flex items-center justify-center font-bold text-sm transition-colors ${
                     isSelected
-                      ? 'bg-[#14B8A6] text-white'
-                      : (isCorrectLabel ? 'bg-green-500 text-white' : 'bg-white border-2 border-gray-200 text-[#64748b]')
+                      ? 'bg-[#1E3A8A] text-white'
+                      : (isCorrectLabel ? 'bg-green-50 text-white' : 'bg-white border-2 border-gray-200 text-[#64748b]')
                   }`}>
                     {String.fromCharCode(65 + index)}
                   </div>
@@ -608,7 +608,7 @@ export default function OnGoingTryout({ isPembahasan, isBimbel }: any) {
                     <CKeditor content={item.jawaban} readOnly />
                   </div>
                   {isSelected && (
-                    <div className="shrink-0 bg-[#14B8A6] p-1.5 rounded-full">
+                    <div className="shrink-0 bg-[#1E3A8A] p-1.5 rounded-full">
                       <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 text-white" viewBox="0 0 20 20" fill="currentColor">
                         <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                       </svg>
@@ -736,7 +736,7 @@ export default function OnGoingTryout({ isPembahasan, isBimbel }: any) {
                           : item.status === 'SALAH' && !item.isAnswer
                           ? 'bg-gray-200 text-gray-500 border border-gray-200'
                           : 'bg-[#f8fafc] text-[#94a3b8] border border-gray-100'
-                        : (isAnswered ? 'bg-[#ccfbf1] text-[#0f766e] border border-[#99f6e4]' : 'bg-[#f8fafc] text-[#94a3b8] border border-gray-100')
+                        : (isAnswered ? 'bg-[#dbeafe] text-[#1e40af] border border-[#bfdbfe]' : 'bg-[#f8fafc] text-[#94a3b8] border border-gray-100')
                     }`}
                   >
                     {index + 1}
@@ -763,7 +763,7 @@ export default function OnGoingTryout({ isPembahasan, isBimbel }: any) {
             ) : (
               <div className="flex items-center gap-6 mt-2">
                 <div className="flex items-center gap-2">
-                  <div className="w-3 h-3 rounded-full bg-[#14B8A6]"></div>
+                  <div className="w-3 h-3 rounded-full bg-[#1E3A8A]"></div>
                   <span className="text-[10px] text-gray-500 font-bold">Terjawab</span>
                 </div>
                 <div className="flex items-center gap-2">
@@ -806,7 +806,7 @@ export default function OnGoingTryout({ isPembahasan, isBimbel }: any) {
             <button
               disabled={onShow === soalId?.length - 1}
               onClick={() => onShow < soalId?.length - 1 && setOnShow(onShow + 1)}
-              className={`flex-1 flex flex-col items-center gap-1 py-2.5 px-3 rounded-xl bg-[#14B8A6] shadow-lg shadow-teal-100 active:bg-[#0f766e] transition-all ${onShow === soalId?.length - 1 ? 'opacity-30' : ''}`}
+              className={`flex-1 flex flex-col items-center gap-1 py-2.5 px-3 rounded-xl bg-[#1E3A8A] shadow-lg shadow-blue-100 active:bg-[#1e40af] transition-all ${onShow === soalId?.length - 1 ? 'opacity-30' : ''}`}
             >
               <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" />

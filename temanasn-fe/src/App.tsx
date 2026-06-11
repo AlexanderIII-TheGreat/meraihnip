@@ -275,10 +275,10 @@ export default function App({ children }: LayoutProps) {
                     <div className="relative font-[sans-serif] w-max mx-auto group group-hover:opacity-100">
                       <button
                         type="button"
-                        className="w-10 h-10 border border-primary flex items-center justify-center group rounded-full text-sm font-semibold bg-white dark:bg-gray-800 group-hover:bg-indigo-800 dark:group-hover:bg-indigo-600 text-indigo-800 dark:text-indigo-300 group-hover:text-white"
+                        className="w-10 h-10 flex items-center justify-center group rounded-full text-sm font-semibold bg-[#1E3A8A] hover:bg-[#1E3A8A]/90 text-white"
                       >
                         {data?.notifikasi?.filter((e: any) => !e?.isRead).length ? (
-                          <div className="absolute inline-flex items-center justify-center w-5 h-5 text-[10px] font-bold text-white bg-primary dark:bg-indigo-500 group-hover:bg-white group-hover:text-primary dark:group-hover:text-indigo-300 group-hover:border group-hover:border-primary dark:group-hover:border-indigo-300 rounded-full -top-1 -end-0">
+                          <div className="absolute inline-flex items-center justify-center w-5 h-5 text-[10px] font-bold text-white bg-red-500 rounded-full -top-1 -end-0">
                             {data.notifikasi.filter((e: any) => !e?.isRead).length}
                           </div>
                         ) : null}
@@ -305,7 +305,7 @@ export default function App({ children }: LayoutProps) {
                               </div>
                               <span
                                 aria-hidden="true"
-                                className={`${notificationTab === 'SYSTEM' && 'bg-indigo-500'} absolute inset-x-0 bottom-0 h-0.5`}
+                                className={`${notificationTab === 'SYSTEM' && 'bg-primary'} absolute inset-x-0 bottom-0 h-0.5`}
                               ></span>
                             </button>
                             <button
@@ -323,7 +323,7 @@ export default function App({ children }: LayoutProps) {
                               </div>
                               <span
                                 aria-hidden="true"
-                                className={`${notificationTab === 'USER' && 'bg-indigo-500'} absolute inset-x-0 bottom-0 h-0.5`}
+                                className={`${notificationTab === 'USER' && 'bg-primary'} absolute inset-x-0 bottom-0 h-0.5`}
                               ></span>
                             </button>
                           </nav>
@@ -348,7 +348,7 @@ export default function App({ children }: LayoutProps) {
                                       <p className="text-sm text-gray-700 dark:text-gray-400 mt-2">
                                         {e.keterangan || e?.notification?.keterangan}
                                       </p>
-                                      <p className="text-xs text-blue-500 dark:text-blue-300 leading-3 mt-2 w-full text-right">
+                                      <p className="text-xs text-[#1E3A8A] dark:text-blue-300 leading-3 mt-2 w-full text-right">
                                         {moment(e.createdAt || e?.notification?.createdAt).fromNow()}
                                       </p>
                                     </div>
@@ -363,7 +363,7 @@ export default function App({ children }: LayoutProps) {
                           </ul>
                           <p
                             onClick={handleReadAll}
-                            className="text-sm p-3 text-center border-t border-gray-[#DDD] dark:border-gray-600 text-blue-500 dark:text-blue-300 cursor-pointer bg-white dark:bg-gray-800"
+                            className="text-sm p-3 text-center border-t border-gray-[#DDD] dark:border-gray-600 text-[#1E3A8A] dark:text-blue-300 cursor-pointer bg-white dark:bg-gray-800"
                           >
                             Tandai semua sudah dibaca
                           </p>
