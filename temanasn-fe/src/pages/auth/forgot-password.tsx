@@ -26,7 +26,7 @@ export default function ForgotPassword() {
   return (
     <>
       <div
-        style={{ backgroundImage: `linear-gradient(rgba(5, 10, 30, 0.62), rgba(5, 10, 30, 0.62)), url('/img/bg-astero.png')` }}
+        style={{ backgroundImage: `linear-gradient(rgba(5, 10, 30, 0.62), rgba(5, 10, 30, 0.62)), url('/img/bg.jpg')` }}
         className="min-h-[100vh] bg-no-repeat bg-cover bg-center pt-20"
       >
         <div className="flex min-h-full flex-1 flex-col justify-center py-12 sm:px-6 lg:px-8">

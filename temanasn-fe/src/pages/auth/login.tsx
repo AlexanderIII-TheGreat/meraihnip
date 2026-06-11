@@ -107,7 +107,7 @@ export default function Example() {
   return (
     <>
       <div
-        style={{ backgroundImage: `linear-gradient(rgba(5, 10, 30, 0.62), rgba(5, 10, 30, 0.62)), url('/img/bg-astero.png')` }}
+        style={{ backgroundImage: `linear-gradient(rgba(5, 10, 30, 0.62), rgba(5, 10, 30, 0.62)), url('/img/bg.jpg')` }}
         className="min-h-[100vh] bg-no-repeat bg-cover bg-center pt-20"
       >
         <div className="flex min-h-full flex-1 flex-col justify-center py-12 sm:px-6 lg:px-8">
@@ -239,7 +239,7 @@ export default function Example() {
         </div>
         {/* WhatsApp floating button */}
         <a
-          href={`https://api.whatsapp.com/send/?phone=${waNumber}&text=Halo+admin%2C+saya+butuh+bantuan+di+Astero&type=phone_number&app_absent=0`}
+          href={`https://api.whatsapp.com/send/?phone=${waNumber}&text=Halo+admin%2C+saya+butuh+bantuan+di+MeraihNIP&type=phone_number&app_absent=0`}
           target="_blank"
           rel="noopener noreferrer"
           className="fixed bottom-6 right-6 z-50 flex items-center justify-center w-14 h-14 rounded-full bg-primary text-white shadow-lg hover:scale-110 transition-transform"
