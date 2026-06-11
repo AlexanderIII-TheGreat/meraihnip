@@ -16,6 +16,7 @@
     "@react-oauth/google": "^0.13.4",
     "@tabler/icons-react": "^2.45.0",
     "axios": "^1.6.8",
+    "ckeditor4-integrations-common": "^1.0.0",
     "ckeditor4-react": "^4.2.0",
     "format-currency": "^1.0.0",
     "framer-motion": "^10.18.0",
