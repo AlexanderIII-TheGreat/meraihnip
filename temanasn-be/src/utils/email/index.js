@@ -32,11 +32,22 @@ const sendMail = async (data) => {
       },
     });
 
+    const platformName = process.env.PLATFORM_NAME || 'MeraihNIP';
+    const platformLogo = process.env.PLATFORM_LOGO_URL || 'https://fungsional.id/wp-content/uploads/2025/03/logo-fungsional.id-3-scaled.webp';
+    const platformUrl = process.env.URL_CLIENT || 'http://localhost:5173';
+
+    const renderData = {
+      platform_name: platformName,
+      platform_logo: platformLogo,
+      platform_url: platformUrl,
+      ...data
+    };
+
     const mailOptions = {
-      from: `"${process.env.SMTP_EMAIL}" <${process.env.SMTP_EMAIL}>`, // sender address
+      from: `"${platformName}" <${process.env.SMTP_EMAIL}>`, // sender address
       to, // list of receivers
       subject, // Subject line
-      html: mustache.render(fileTemplate, { ...data }),
+      html: mustache.render(fileTemplate, renderData),
     };
 
     const info = await transporter.sendMail(mailOptions);

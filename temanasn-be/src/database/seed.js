@@ -44,7 +44,7 @@ async function main() {
   const testUser = await database.user.create({
     data: {
       email: 'abiyyu@gmail.com',
-      name: 'Budi Santoso',
+      name: 'Abiyyu',
       noWA: '+6289876543210',
       jenisKelamin: 'L',
       alamat: 'Jl. Pemuda No. 45',
@@ -276,7 +276,21 @@ async function main() {
 
   const today = new Date();
 
-  // Tryout 1: 5 days ago (Monday) - 80 mins (4800 secs)
+  // Tryout 1: 6 days ago (Monday) - 60 mins (3600 secs)
+  await database.tryout.create({
+    data: {
+      userId: testUser.id,
+      paketLatihanId: paketLatihan1.id,
+      point: 320,
+      kkm: 311,
+      maxPoint: 500,
+      finishAt: new Date(today.getTime() - 6 * 24 * 3600 * 1000),
+      waktuPengerjaan: 3600,
+      createdAt: new Date(today.getTime() - 6 * 24 * 3600 * 1000),
+    }
+  });
+
+  // Tryout 2: 5 days ago (Tuesday) - 80 mins (4800 secs)
   await database.tryout.create({
     data: {
       userId: testUser.id,
@@ -290,7 +304,21 @@ async function main() {
     }
   });
 
-  // Tryout 2: 3 days ago (Wednesday) - 90 mins (5400 secs)
+  // Tryout 3: 4 days ago (Wednesday) - 75 mins (4500 secs)
+  await database.tryout.create({
+    data: {
+      userId: testUser.id,
+      paketLatihanId: paketLatihan1.id,
+      point: 390,
+      kkm: 311,
+      maxPoint: 500,
+      finishAt: new Date(today.getTime() - 4 * 24 * 3600 * 1000),
+      waktuPengerjaan: 4500,
+      createdAt: new Date(today.getTime() - 4 * 24 * 3600 * 1000),
+    }
+  });
+
+  // Tryout 4: 3 days ago (Thursday) - 90 mins (5400 secs)
   await database.tryout.create({
     data: {
       userId: testUser.id,
@@ -304,7 +332,21 @@ async function main() {
     }
   });
 
-  // Tryout 3: 1 day ago (Friday) - 100 mins (6000 secs) - ID 10
+  // Tryout 5: 2 days ago (Friday) - 85 mins (5100 secs)
+  await database.tryout.create({
+    data: {
+      userId: testUser.id,
+      paketLatihanId: paketLatihan1.id,
+      point: 410,
+      kkm: 311,
+      maxPoint: 500,
+      finishAt: new Date(today.getTime() - 2 * 24 * 3600 * 1000),
+      waktuPengerjaan: 5100,
+      createdAt: new Date(today.getTime() - 2 * 24 * 3600 * 1000),
+    }
+  });
+
+  // Tryout 6: 1 day ago (Saturday) - 100 mins (6000 secs) - ID 10
   const tryoutMain = await database.tryout.create({
     data: {
       id: 10, // Match /my-class/7/tryout/1/6/10
@@ -317,6 +359,20 @@ async function main() {
       finishAt: new Date(today.getTime() - 1 * 24 * 3600 * 1000),
       waktuPengerjaan: 6000,
       createdAt: new Date(today.getTime() - 1 * 24 * 3600 * 1000),
+    }
+  });
+
+  // Tryout 7: Today (Sunday) - 95 mins (5700 secs)
+  await database.tryout.create({
+    data: {
+      userId: testUser.id,
+      paketLatihanId: paketLatihan1.id,
+      point: 430,
+      kkm: 311,
+      maxPoint: 500,
+      finishAt: today,
+      waktuPengerjaan: 5700,
+      createdAt: today,
     }
   });
 

@@ -357,6 +357,56 @@ const user = async (req, res, next) => {
     const totalBelajarMingguIni = Math.round((totalSeconds._sum.waktuPengerjaan || 0) / 60);
     const rerataBelajarHarian = Math.round(totalBelajarMingguIni / 7);
 
+    // Calculate tryout streak (consecutive days with at least one tryout)
+    let tryoutStreak = 0;
+    let checkDate = new Date();
+    checkDate.setHours(0, 0, 0, 0);
+
+    while (true) {
+      const startOfCheck = new Date(checkDate);
+      const endOfCheck = new Date(checkDate);
+      endOfCheck.setHours(23, 59, 59, 999);
+
+      const count = await database.tryout.count({
+        where: {
+          userId: req.user.id,
+          createdAt: {
+            gte: startOfCheck,
+            lte: endOfCheck,
+          },
+        },
+      });
+
+      if (count > 0) {
+        tryoutStreak++;
+        checkDate.setDate(checkDate.getDate() - 1);
+      } else {
+        if (tryoutStreak === 0) {
+          // Check yesterday if they haven't done one today yet
+          checkDate.setDate(checkDate.getDate() - 1);
+          const startOfYesterday = new Date(checkDate);
+          const endOfYesterday = new Date(checkDate);
+          endOfYesterday.setHours(23, 59, 59, 999);
+          
+          const yesterdayCount = await database.tryout.count({
+            where: {
+              userId: req.user.id,
+              createdAt: {
+                gte: startOfYesterday,
+                lte: endOfYesterday,
+              },
+            },
+          });
+          if (yesterdayCount > 0) {
+            tryoutStreak++;
+            checkDate.setDate(checkDate.getDate() - 1);
+            continue;
+          }
+        }
+        break;
+      }
+    }
+
     return res.status(200).json({
       status: 'success',
       data: {
@@ -374,6 +424,7 @@ const user = async (req, res, next) => {
         tryoutAkbarStats,
         totalBelajarMingguIni,
         rerataBelajarHarian,
+        tryoutStreak,
       },
     });
   } catch (error) {

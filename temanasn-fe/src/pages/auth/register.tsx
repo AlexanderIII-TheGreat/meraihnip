@@ -6,6 +6,7 @@ import toast from "react-hot-toast";
 import { useState } from "react";
 import { Link, useNavigate, useParams, useLocation } from "react-router-dom";
 import LOGO from "@/assets/Logo.png";
+import { IconMessageCircle2 } from "@tabler/icons-react";
 
 export default function Example() {
   const [isLoading, setIsLoading] = useState(false);
@@ -179,13 +180,9 @@ export default function Example() {
           href="https://api.whatsapp.com/send/?phone=628567854441&text=Halo+admin%2C+saya+butuh+bantuan+di+MeraihNIP&type=phone_number&app_absent=0"
           target="_blank"
           rel="noopener noreferrer"
-          className="fixed bottom-6 right-6 z-50"
+          className="fixed bottom-6 right-6 z-50 flex items-center justify-center w-14 h-14 rounded-full bg-primary text-white shadow-lg hover:scale-110 transition-transform"
         >
-          <img
-            src="/img/whatsapp.webp"
-            alt="WhatsApp Admin"
-            className="w-14 h-14 drop-shadow-lg hover:scale-110 transition-transform"
-          />
+          <IconMessageCircle2 size={26} />
         </a>
       </div>
     </>

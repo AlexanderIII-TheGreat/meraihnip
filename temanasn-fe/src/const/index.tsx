@@ -9,7 +9,7 @@ export { default as menuListAdmin } from "./menu-list-admin";
 export const SERVER_URL_API = import.meta.env.VITE_API_URL || "http://localhost:8002/api";
 export const SERVER_URL = import.meta.env.VITE_SERVER_URL || "http://localhost:8002";
 export const FRONTEND_URL = import.meta.env.VITE_FRONTEND_URL || "http://localhost:5173";
-export const GOOGLE_CLIENT_ID = "325309011250-2gpas1aoils9hherkrj8l1nu5rsfgcup.apps.googleusercontent.com";
+export const GOOGLE_CLIENT_ID = import.meta.env.VITE_GOOGLE_CLIENT_ID || "649324865483-ip0u7077jn7p9pm3o8j5l73js6osqiq2.apps.googleusercontent.com";
 
 export { adminRoutes } from "./route-admin";
 

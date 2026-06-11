@@ -179,11 +179,24 @@ export default function App({ children }: LayoutProps) {
       toggleDropdownProfile();
     }
   };
+  // Auto-close sidebar on exam pages
+  useEffect(() => {
+    const isWorkingOnExam = 
+      location.pathname.includes('/generate-soal/kerjakan/') ||
+      /my-class\/[^/]+\/(tryout|bimbel\/mini-test)\/[^/]+\/[^/]+\/[^/]+/.test(location.pathname);
+    if (isWorkingOnExam) {
+      setShowMenu(false);
+    }
+  }, [location.pathname]);
+
   return (
     <div className="font-['Poppins'] bg-[#f5f5f5] dark:bg-gray-800 scroll-smooth min-h-screen w-full overflow-x-hidden">
       <div className="flex flex-row justify-start w-full overflow-x-hidden">
         {isDesktopLayout ? (
           <motion.div
+            onMouseLeave={() => {
+              if (showMenu) setShowMenu(false);
+            }}
             animate={{ width: showMenu ? 280 : 80 }}
             transition={{ type: 'spring', damping: 25, stiffness: 200 }}
             className="fixed top-0 left-0 h-screen bg-white dark:bg-gray-900 z-50 flex flex-col border-r dark:border-gray-700 overflow-hidden"
@@ -220,6 +233,11 @@ export default function App({ children }: LayoutProps) {
           </AnimatePresence>
         )}
         <div 
+          onMouseEnter={() => {
+            if (isDesktopLayout && showMenu) {
+              setShowMenu(false);
+            }
+          }}
           className={`flex-auto min-w-0 w-full transition-all duration-300 ${
             isDesktopLayout 
               ? (showMenu ? 'ml-[280px]' : 'ml-[80px]') 
