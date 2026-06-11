@@ -151,12 +151,12 @@ export default function SideMenu({
         bg-white text-slate-700 
         border-r border-gray-200 
         rtl:border-r-0 rtl:border-l 
-        z-[98] ${isCollapsed ? 'w-20 px-2 items-center' : 'w-[280px] px-6'} ${classNames}`}
+        z-[98] ${isCollapsed ? 'w-20 px-2 items-center bg-white' : 'w-[280px] px-6 bg-white'} ${classNames}`}
     >
       {/* Navbar top */}
-      <div className={`flex flex-row justify-between bg-white ${isCollapsed ? 'p-2 justify-center' : 'p-5'}`}>
-        <div className="logo flex-row justify-center items-center gap-x-2">
-          <img className={`${isCollapsed ? 'h-9 w-9 object-contain' : 'w-auto h-12'}`} src={LOGO} alt="logo" />
+      <div className={`flex flex-row justify-between bg-white ${isCollapsed ? 'p-2 justify-center bg-white' : 'p-5 bg-white'}`}>
+        <div className="logo flex-row justify-center items-center gap-x-2 bg-white">
+          <img className={`${isCollapsed ? 'h-9 w-9 object-contain bg-white' : 'w-auto h-12 bg-white'}`} src={LOGO} alt="logo" />
         </div>
       </div>
 

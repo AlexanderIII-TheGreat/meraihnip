@@ -200,11 +200,11 @@ export default function App({ children }: LayoutProps) {
             <motion.div
               animate={{ width: showMenu ? 280 : 80 }}
               transition={{ type: 'spring', damping: 25, stiffness: 200 }}
-              className="fixed top-0 left-0 h-screen bg-white dark:bg-gray-900 z-50 flex flex-col border-r dark:border-gray-700 overflow-hidden"
+              className="fixed top-0 left-0 h-screen bg-white z-50 flex flex-col border-r dark:border-gray-700 overflow-hidden"
             >
-              <div className="w-[280px] h-full flex flex-col">
+              <div className="w-[280px] h-full flex flex-col bg-white">
                 <SideMenu
-                  classNames="flex h-full"
+                  classNames="flex h-full bg-white"
                   menuOpened={menuOpened}
                   setMenuOpened={setMenuOpened}
                   toggleMenu={toggleDropdown}
@@ -228,10 +228,10 @@ export default function App({ children }: LayoutProps) {
                 animate={{ x: 0, opacity: 1 }}
                 exit={{ x: '-100%', opacity: 0.5 }}
                 transition={{ type: 'spring', damping: 25, stiffness: 180 }}
-                className="fixed top-0 left-0 w-full h-full bg-white dark:bg-gray-900 z-50 flex flex-col"
+                className="fixed top-0 left-0 w-full h-full bg-white z-50 flex flex-col"
               >
                 <SideMenu
-                  classNames="flex h-full"
+                  classNames="flex h-full bg-white"
                   menuOpened={menuOpened}
                   setMenuOpened={setMenuOpened}
                   toggleMenu={toggleDropdown}
