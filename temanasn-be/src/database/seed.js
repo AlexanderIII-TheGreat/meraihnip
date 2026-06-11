@@ -18,6 +18,11 @@ async function main() {
   await database.user.deleteMany({});
   await database.feedbackSetting.deleteMany({});
   await database.berita.deleteMany({});
+  await database.generateSoalHistoryDetail.deleteMany({});
+  await database.generateSoalHistory.deleteMany({});
+  await database.chatTicket.deleteMany({});
+  await database.tickets.deleteMany({});
+  await database.notificationUser.deleteMany({});
 
   console.log('Seeding data...');
 
@@ -513,6 +518,111 @@ async function main() {
     }
   });
   console.log('Feedback settings seeded.');
+
+  // 8. Seed GenerateSoalHistory & Details for Abiyyu
+  console.log('Seeding GenerateSoalHistory for Abiyyu...');
+  const genHistory1 = await database.generateSoalHistory.create({
+    data: {
+      userId: testUser.id,
+      name: 'Simulasi Mandiri IPA - Mudah',
+      kkm: 80,
+      jumlahSoal: 10,
+      tingkatKesulitan: 'mudah',
+      kategori: 'IPA',
+      score: 45,
+      waktu: 600,
+      createdAt: new Date(today.getTime() - 2 * 24 * 3600 * 1000),
+      updatedAt: new Date(today.getTime() - 2 * 24 * 3600 * 1000),
+    }
+  });
+
+  for (let i = 1; i <= 10; i++) {
+    const isCorrect = i <= 9; // 9 correct, 1 wrong
+    await database.generateSoalHistoryDetail.create({
+      data: {
+        generateSoalHistoryId: genHistory1.id,
+        generateSoalCategoryId: 3, // IPA
+        soal: `<p>Berapakah hasil dari pertanyaan IPA nomor ${i}?</p>`,
+        jawaban: JSON.stringify([{ id: 1, value: 'Pilihan A', isCorrect: true }]),
+        jawabanShow: 'Pilihan A',
+        jawabanSelect: '1',
+        isCorrect: isCorrect,
+        pembahasan: '<p>Pembahasan soal IPA.</p>',
+        point: isCorrect ? 5 : 0,
+        kkm: 80,
+        maxPoint: 5,
+        category: 'IPA',
+        categoryKet: 'Kategori IPA',
+        duration: 30 + i,
+        subCategory: 'IPA Sub',
+        tipePenilaian: 'BENAR_SALAH',
+        tingkatkesulitansoal: 'mudah'
+      }
+    });
+  }
+  console.log('GenerateSoalHistory seeded.');
+
+  // 9. Seed Support Tickets for Abiyyu
+  console.log('Seeding tickets for Abiyyu...');
+  const ticket1 = await database.tickets.create({
+    data: {
+      userId: testUser.id,
+      title: 'Kendala Akses Pembahasan Tryout',
+      description: 'Halo admin, saya baru menyelesaikan Tryout Akbar Ke-1 tapi pembahasannya belum muncul di tab pembahasan. Mohon bantuannya.',
+      category: 'Tryout',
+      status: 'resolved',
+      adminResponse: 'Halo Abiyyu, terima kasih sudah menghubungi kami. Pembahasan Tryout Akbar baru akan dibuka secara otomatis setelah periode Tryout Akbar selesai (biasanya Lusa). Silakan cek kembali saat waktu pengerjaan tryout nasional ditutup ya.',
+      createdAt: new Date(today.getTime() - 4 * 24 * 3600 * 1000),
+      updatedAt: new Date(today.getTime() - 4 * 24 * 3600 * 1000),
+    }
+  });
+
+  await database.chatTicket.create({
+    data: {
+      userId: testUser.id,
+      ticketId: ticket1.id,
+      message: 'Halo admin, saya baru menyelesaikan Tryout Akbar Ke-1 tapi pembahasannya belum muncul di tab pembahasan. Mohon bantuannya.',
+      createdAt: new Date(today.getTime() - 4 * 24 * 3600 * 1000),
+    }
+  });
+
+  await database.chatTicket.create({
+    data: {
+      userId: adminUser.id,
+      ticketId: ticket1.id,
+      message: 'Halo Abiyyu, terima kasih sudah menghubungi kami. Pembahasan Tryout Akbar baru akan dibuka secara otomatis setelah periode Tryout Akbar selesai (biasanya Lusa). Silakan cek kembali saat waktu pengerjaan tryout nasional ditutup ya.',
+      createdAt: new Date(today.getTime() - 3.9 * 24 * 3600 * 1000),
+    }
+  });
+  console.log('Support tickets seeded.');
+
+  // 10. Seed NotificationUser for Abiyyu
+  console.log('Seeding notifications for Abiyyu...');
+  await database.notificationUser.create({
+    data: {
+      userId: testUser.id,
+      title: 'Pembayaran Paket Platinum Berhasil',
+      keterangan: 'Selamat! Pembayaran untuk Paket Platinum CPNS & PPPK 2026 Anda telah diverifikasi oleh admin. Sekarang Anda dapat mengakses semua fitur pembelajaran.',
+      type: 'SYSTEM',
+      status: 'PAYMENT_SUCCESS',
+      isRead: false,
+      createdAt: new Date(today.getTime() - 5 * 24 * 3600 * 1000),
+    }
+  });
+
+  await database.notificationUser.create({
+    data: {
+      userId: testUser.id,
+      title: 'Tryout Akbar Ke-1 Telah Dibuka',
+      keterangan: 'Simulasi CAT Nasional Ke-1 sudah dibuka. Mulai kerjakan sekarang untuk mengukur kemampuan nasional Anda!',
+      type: 'USER',
+      status: 'BIMBEL_CHANGES',
+      url: '/my-class/7/tryout/1/6',
+      isRead: false,
+      createdAt: new Date(today.getTime() - 1 * 24 * 3600 * 1000),
+    }
+  });
+  console.log('Notifications seeded.');
 
   console.log('Database Seeding Completed Successfully!');
 }
