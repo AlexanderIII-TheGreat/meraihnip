@@ -34,7 +34,12 @@ const sendMail = async (data) => {
 
     const platformName = process.env.PLATFORM_NAME || 'MeraihNIP';
     const platformUrl = process.env.URL_CLIENT || 'http://localhost:5173';
-    const serverUrl = process.env.BASE_URL || 'http://localhost:8002';
+    
+    // Resolve public server URL to serve the static logo image
+    let serverUrl = process.env.URL_SERVER || process.env.BASE_URL || 'http://localhost:8002';
+    // Remove /api or trailing slash if present
+    serverUrl = serverUrl.replace(/\/api\/?$/, '').replace(/\/+$/, '');
+
     const platformLogo = process.env.PLATFORM_LOGO_URL || `${serverUrl}/logo-meraihnip.png`;
 
     const renderData = {
