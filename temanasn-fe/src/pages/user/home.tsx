@@ -852,7 +852,16 @@ export default function HomePage() {
                 <span className="text-xl font-bold text-rose-600">{ (data?.tryoutSayaStats?.total || 0) + (data?.tryoutAkbarStats?.total || 0) } <span className="text-xs text-gray-400 font-normal">Diikuti</span></span>
               </div>
               <div className="w-full bg-gray-100 rounded-full h-2 mb-2">
-                <div className="bg-rose-500 h-2 rounded-full" style={{ width: `${Math.min(data?.tryoutAkbarStats?.rataRata || 0, 100)}%` }}></div>
+                <div 
+                  className="bg-rose-500 h-2 rounded-full" 
+                  style={{ 
+                    width: `${Math.min(
+                      (((data?.tryoutSayaStats?.total || 0) + (data?.tryoutAkbarStats?.total || 0)) / 
+                      (data?.tryoutAkbarStats?.target || 5)) * 100, 
+                      100
+                    )}%` 
+                  }}
+                ></div>
               </div>
               <div className="flex justify-between items-center text-xs text-gray-500">
                 <span>Tryout Streak: <span className="text-rose-600 font-bold">{data?.tryoutStreak || 3} Hari</span></span>
