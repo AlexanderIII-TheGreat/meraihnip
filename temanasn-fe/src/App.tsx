@@ -195,22 +195,31 @@ export default function App({ children }: LayoutProps) {
     <div className="font-['Poppins'] bg-[#f5f5f5] dark:bg-gray-800 scroll-smooth min-h-screen w-full overflow-x-hidden">
       <div className="flex flex-row justify-start w-full min-h-screen relative">
         {isDesktopLayout ? (
-          <motion.div
-            animate={{ width: showMenu ? 280 : 80 }}
-            transition={{ type: 'spring', damping: 25, stiffness: 200 }}
-            className="flex-shrink-0 h-screen sticky top-0 bg-white dark:bg-gray-900 z-50 flex flex-col border-r dark:border-gray-700 overflow-hidden"
-          >
-            <div className="w-[280px] h-full flex flex-col">
-              <SideMenu
-                classNames="flex h-full"
-                menuOpened={menuOpened}
-                setMenuOpened={setMenuOpened}
-                toggleMenu={toggleDropdown}
-                isDesktopLayout={isDesktopLayout}
-                isCollapsed={!showMenu}
-              />
-            </div>
-          </motion.div>
+          <>
+            {/* Desktop fixed sidebar */}
+            <motion.div
+              animate={{ width: showMenu ? 280 : 80 }}
+              transition={{ type: 'spring', damping: 25, stiffness: 200 }}
+              className="fixed top-0 left-0 h-screen bg-white dark:bg-gray-900 z-50 flex flex-col border-r dark:border-gray-700 overflow-hidden"
+            >
+              <div className="w-[280px] h-full flex flex-col">
+                <SideMenu
+                  classNames="flex h-full"
+                  menuOpened={menuOpened}
+                  setMenuOpened={setMenuOpened}
+                  toggleMenu={toggleDropdown}
+                  isDesktopLayout={isDesktopLayout}
+                  isCollapsed={!showMenu}
+                />
+              </div>
+            </motion.div>
+            {/* Dynamic spacing placeholder so main content shifts smoothly */}
+            <motion.div
+              animate={{ width: showMenu ? 280 : 80 }}
+              transition={{ type: 'spring', damping: 25, stiffness: 200 }}
+              className="flex-shrink-0 h-screen"
+            />
+          </>
         ) : (
           <AnimatePresence>
             {showMenu && (
