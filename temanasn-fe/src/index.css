@@ -79,16 +79,16 @@ input[type=number] {
 
 :root,
 :root[theme-mode="light"] {
-  --td-brand-color-1: #ede7f6 !important;
-  --td-brand-color-2: #d9005c !important;
-  --td-brand-color-3: #0ea5e987 !important;
-  --td-brand-color-4: #0ea5e9 !important;
-  --td-brand-color-5: #0ea5e9 !important;
-  --td-brand-color-6: #d9005c !important;
-  --td-brand-color-7: #0ea5e9 !important;
-  --td-brand-color-8: #0ea5e9 !important;
-  --td-brand-color-9: #0ea5e9 !important;
-  --td-brand-color-10: #0ea5e9 !important;
+  --td-brand-color-1: #f0f9ff !important;
+  --td-brand-color-2: #e0f2fe !important;
+  --td-brand-color-3: #bae6fd !important;
+  --td-brand-color-4: #7dd3fc !important;
+  --td-brand-color-5: #38bdf8 !important;
+  --td-brand-color-6: #0ea5e9 !important;
+  --td-brand-color-7: #0284c7 !important;
+  --td-brand-color-8: #0369a1 !important;
+  --td-brand-color-9: #075985 !important;
+  --td-brand-color-10: #0c4a6e !important;
   
   --td-brand-color: var(--td-brand-color-7) !important;     
   --td-warning-color: var(--td-warning-color-5); 
@@ -101,7 +101,6 @@ input[type=number] {
   --td-brand-color-disabled: var(--td-brand-color-3) !important;  
   --td-brand-color-light: var(--td-brand-color-1) !important;    
   --td-brand-color-light-hover: var(--td-brand-color-2) !important;
-  /* --td-font-size-body-large: 24px !important; */
 }
 .t-dialog__close{
   /* width: 30px; */
