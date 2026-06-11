@@ -179,13 +179,15 @@ export default function App({ children }: LayoutProps) {
       toggleDropdownProfile();
     }
   };
-  // Auto-close sidebar on exam pages
+  // Auto-close sidebar on exam pages, open on other pages
   useEffect(() => {
     const isWorkingOnExam = 
       location.pathname.includes('/generate-soal/kerjakan/') ||
       /my-class\/[^/]+\/(tryout|bimbel\/mini-test)\/[^/]+\/[^/]+\/[^/]+/.test(location.pathname);
     if (isWorkingOnExam) {
       setShowMenu(false);
+    } else {
+      setShowMenu(window.innerWidth >= DESKTOP_BREAKPOINT);
     }
   }, [location.pathname]);
 

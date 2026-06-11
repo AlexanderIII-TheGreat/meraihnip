@@ -147,11 +147,11 @@ export default function SideMenu({
 
   return (
     <aside
-      className={`flex flex-col w-full h-full py-0 lg:py-8 overflow-y-auto 
+      className={`flex flex-col h-full py-0 lg:py-8 overflow-y-auto no-scrollbar
         bg-white text-slate-700 
         border-r border-gray-200 
         rtl:border-r-0 rtl:border-l 
-        z-[98] ${isCollapsed ? 'px-2 items-center' : 'px-6'} ${classNames}`}
+        z-[98] ${isCollapsed ? 'w-20 px-2 items-center' : 'w-[280px] px-6'} ${classNames}`}
     >
       {/* Navbar top */}
       <div className={`flex flex-row justify-between bg-white ${isCollapsed ? 'p-2 justify-center' : 'p-5'}`}>
