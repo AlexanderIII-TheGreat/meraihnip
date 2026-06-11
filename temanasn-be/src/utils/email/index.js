@@ -33,8 +33,9 @@ const sendMail = async (data) => {
     });
 
     const platformName = process.env.PLATFORM_NAME || 'MeraihNIP';
-    const platformLogo = process.env.PLATFORM_LOGO_URL || 'https://fungsional.id/wp-content/uploads/2025/03/logo-fungsional.id-3-scaled.webp';
     const platformUrl = process.env.URL_CLIENT || 'http://localhost:5173';
+    const serverUrl = process.env.BASE_URL || 'http://localhost:8002';
+    const platformLogo = process.env.PLATFORM_LOGO_URL || `${serverUrl}/logo-meraihnip.png`;
 
     const renderData = {
       platform_name: platformName,
