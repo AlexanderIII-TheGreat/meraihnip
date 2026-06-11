@@ -148,15 +148,15 @@ export default function SideMenu({
   return (
     <aside
       className={`flex flex-col h-full py-0 lg:py-8 overflow-y-auto no-scrollbar flex-shrink-0
-        bg-white text-slate-700 
-        border-r border-gray-200 
+        bg-white dark:bg-gray-900 text-slate-700 dark:text-gray-300
+        border-r border-gray-200 dark:border-gray-800
         rtl:border-r-0 rtl:border-l 
-        z-[98] ${isCollapsed ? 'w-20 px-2 items-center bg-white' : 'w-[280px] px-6 bg-white'} ${classNames}`}
+        z-[98] ${isCollapsed ? 'w-20 px-2 items-center' : 'w-[280px] px-6'} ${classNames}`}
     >
       {/* Navbar top */}
-      <div className={`flex flex-row justify-between bg-white ${isCollapsed ? 'p-2 justify-center bg-white' : 'p-5 bg-white'}`}>
-        <div className="logo flex-row justify-center items-center gap-x-2 bg-white">
-          <img className={`${isCollapsed ? 'h-9 w-9 object-contain bg-white' : 'w-auto h-12 bg-white'}`} src={LOGO} alt="logo" />
+      <div className={`flex flex-row justify-between bg-white dark:bg-gray-900 ${isCollapsed ? 'p-2 justify-center' : 'p-5'}`}>
+        <div className="logo flex-row justify-center items-center gap-x-2">
+          <img className={`${isCollapsed ? 'h-9 w-9 object-contain' : 'w-auto h-12'}`} src={LOGO} alt="logo" />
         </div>
       </div>
 
@@ -184,10 +184,11 @@ export default function SideMenu({
                   className={`w-full text-left flex items-center group !mb-4 py-3 transition-colors duration-300 transform rounded-lg 
                     text-slate-600 hover:text-slate-900 
                     hover:bg-slate-100
+                    dark:text-slate-300 dark:hover:text-white dark:hover:bg-slate-800
                     ${isCollapsed ? 'justify-center px-0 h-11 w-11 mx-auto' : 'justify-between px-4'}
                     ${
                       checkRouteActive(relativePath, location.pathname, 0, page.exact) &&
-                      'bg-primary text-white hover:!bg-primary'
+                      'bg-primary text-white hover:!bg-primary dark:!bg-primary dark:!text-white'
                     }`}
                   onClick={() => {
                     navigate(relativePath);
