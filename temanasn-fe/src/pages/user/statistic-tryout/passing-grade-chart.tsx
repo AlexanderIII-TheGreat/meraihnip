@@ -37,8 +37,8 @@ export default function PassingGradeChart({ data }: any) {
         <Legend />
         <Bar
           dataKey="Nilai"
-          fill="#1E3A8A"
-          activeBar={<Rectangle fill="#1E40AF" stroke="#1E3A8A" />}
+          fill="#0ea5e9"
+          activeBar={<Rectangle fill="#0284c7" stroke="#0ea5e9" />}
           radius={[4, 4, 0, 0]}
         />
         <Bar

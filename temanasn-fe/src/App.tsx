@@ -191,15 +191,12 @@ export default function App({ children }: LayoutProps) {
 
   return (
     <div className="font-['Poppins'] bg-[#f5f5f5] dark:bg-gray-800 scroll-smooth min-h-screen w-full overflow-x-hidden">
-      <div className="flex flex-row justify-start w-full overflow-x-hidden">
+      <div className="flex flex-row justify-start w-full min-h-screen relative">
         {isDesktopLayout ? (
           <motion.div
-            onMouseLeave={() => {
-              if (showMenu) setShowMenu(false);
-            }}
             animate={{ width: showMenu ? 280 : 80 }}
             transition={{ type: 'spring', damping: 25, stiffness: 200 }}
-            className="fixed top-0 left-0 h-screen bg-white dark:bg-gray-900 z-50 flex flex-col border-r dark:border-gray-700 overflow-hidden"
+            className="flex-shrink-0 h-screen sticky top-0 bg-white dark:bg-gray-900 z-50 flex flex-col border-r dark:border-gray-700 overflow-hidden"
           >
             <SideMenu
               classNames="flex h-full"
@@ -233,16 +230,7 @@ export default function App({ children }: LayoutProps) {
           </AnimatePresence>
         )}
         <div 
-          onMouseEnter={() => {
-            if (isDesktopLayout && showMenu) {
-              setShowMenu(false);
-            }
-          }}
-          className={`flex-auto min-w-0 w-full transition-all duration-300 ${
-            isDesktopLayout 
-              ? (showMenu ? 'ml-[280px]' : 'ml-[80px]') 
-              : ''
-          }`}
+          className="flex-1 min-w-0 transition-all duration-300 w-full"
         >
           {(!isMobile || account?.role !== 'USER') && (
             <div className="w-full navbar bg-white dark:bg-gray-900 md:py-4 md:px-7 relative">

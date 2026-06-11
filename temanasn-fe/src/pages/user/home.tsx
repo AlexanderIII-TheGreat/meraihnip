@@ -139,12 +139,12 @@ export default function HomePage() {
     datasets: [{
       label: 'Tryout Dikerjakan',
       data: [0,0,0,0,0,0,0],
-      borderColor: 'rgb(30, 58, 138)',
-      backgroundColor: 'rgba(30, 58, 138, 0.1)',
+      borderColor: '#0ea5e9',
+      backgroundColor: 'rgba(14, 165, 233, 0.1)',
       tension: 0.4,
       fill: true,
       borderWidth: 3,
-      pointBackgroundColor: 'rgb(30, 58, 138)',
+      pointBackgroundColor: '#0ea5e9',
       pointBorderColor: '#fff',
       pointBorderWidth: 2,
       pointRadius: 4,
@@ -164,7 +164,7 @@ export default function HomePage() {
       },
       tooltip: {
         enabled: true,
-        backgroundColor: 'rgba(30, 41, 59, 0.9)',
+        backgroundColor: 'rgba(14, 165, 233, 0.9)',
         titleColor: '#fff',
         bodyColor: '#fff',
         padding: 10,
@@ -245,12 +245,12 @@ export default function HomePage() {
             ...dashRes.chartData,
             datasets: (dashRes.chartData.datasets || []).map((ds: any) => ({
               ...ds,
-              borderColor: 'rgb(30, 58, 138)',
-              backgroundColor: 'rgba(30, 58, 138, 0.1)',
+              borderColor: '#0ea5e9',
+              backgroundColor: 'rgba(14, 165, 233, 0.1)',
               tension: 0.4,
               fill: true,
               borderWidth: 3,
-              pointBackgroundColor: 'rgb(30, 58, 138)',
+              pointBackgroundColor: '#0ea5e9',
               pointBorderColor: '#fff',
               pointBorderWidth: 2,
               pointRadius: 4,
@@ -713,9 +713,9 @@ export default function HomePage() {
     <div className="w-[100%] overflow-hidden">
       {renderFeedbackModal()}
       {notification && showNotificationBanner && (
-        <div className="mx-5 mt-5 mb-2 bg-[#f0f4ff] border border-indigo-100 rounded-2xl p-4 flex items-center justify-between shadow-sm transition-all duration-300 relative overflow-hidden">
+        <div className="mx-5 mt-5 mb-2 bg-[#f0f9ff] border border-sky-100 rounded-2xl p-4 flex items-center justify-between shadow-sm transition-all duration-300 relative overflow-hidden">
           <div className="flex items-center gap-3.5 flex-1 mr-4">
-            <div className="bg-indigo-600/10 text-indigo-600 p-2.5 rounded-xl flex-shrink-0">
+            <div className="bg-[#0ea5e9]/10 text-[#0ea5e9] p-2.5 rounded-xl flex-shrink-0">
               <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
               </svg>
@@ -734,7 +734,7 @@ export default function HomePage() {
                 href={(notification as any).link} 
                 target="_blank" 
                 rel="noopener noreferrer" 
-                className="bg-indigo-600 text-white hover:bg-indigo-700 font-semibold text-xs px-4 py-2 rounded-xl transition-all shadow-sm flex-shrink-0"
+                className="bg-[#0ea5e9] text-white hover:bg-[#0284c7] font-semibold text-xs px-4 py-2 rounded-xl transition-all shadow-sm flex-shrink-0"
               >
                 Lihat Selengkapnya
               </a>
@@ -879,10 +879,10 @@ export default function HomePage() {
                 </div>
                 <div className="w-[1px] h-6 bg-gray-200" />
                 <div className="text-left">
-                  <p className="text-[10px] font-semibold text-[#1E3A8A]">Rata-rata/Hari</p>
+                  <p className="text-[10px] font-semibold text-[#0ea5e9]">Rata-rata/Hari</p>
                   <p className="text-sm mt-0.5 font-bold">
-                    <span className="text-[#1E3A8A]">{data?.rerataBelajarHarian || 0}</span>{" "}
-                    <span className="text-[10px] font-normal text-[#1E3A8A]">menit</span>
+                    <span className="text-[#0ea5e9]">{data?.rerataBelajarHarian || 0}</span>{" "}
+                    <span className="text-[10px] font-normal text-[#0ea5e9]">menit</span>
                   </p>
                 </div>
               </div>

@@ -237,13 +237,13 @@ export default function RiwayatTryout({ isBimbel }: any) {
               <button
                 key={tab}
                 onClick={() => setActiveTab(tab)}
-                className={`flex-1 py-4 text-sm font-bold transition-all relative ${isActive ? 'text-blue-600' : 'text-gray-400'}`}
+                className={`flex-1 py-4 text-sm font-bold transition-all relative ${isActive ? 'text-sky-500' : 'text-gray-400'}`}
               >
                 {tab}
                 {isActive && (
                   <motion.div 
                     layoutId="activeTabRiwayat"
-                    className="absolute bottom-0 left-0 right-0 h-1 bg-blue-600 rounded-t-full"
+                    className="absolute bottom-0 left-0 right-0 h-1 bg-sky-500 rounded-t-full"
                   />
                 )}
               </button>
@@ -285,7 +285,7 @@ export default function RiwayatTryout({ isBimbel }: any) {
                     </div>
                     <div className="text-right">
                       <p className="text-[10px] text-gray-400 font-bold uppercase tracking-widest">Skor Akhir</p>
-                      <p className="text-xl font-black text-blue-600 leading-none mt-1">
+                      <p className="text-xl font-black text-sky-500 leading-none mt-1">
                         {row.point?._sum?.point ?? '0'}
                         <span className="text-gray-300 text-sm font-normal ml-0.5">/500</span>
                       </p>
@@ -314,7 +314,7 @@ export default function RiwayatTryout({ isBimbel }: any) {
                         <Button
                           block
                           theme="primary"
-                          className="!rounded-xl h-11 font-bold shadow-lg shadow-blue-100"
+                          className="!rounded-xl h-11 font-bold shadow-lg shadow-sky-100 bg-[#0ea5e9] border-[#0ea5e9] hover:bg-[#0284c7] hover:border-[#0284c7]"
                           onClick={() => navigate(`/my-class/${id}/tryout/${paketFK}/${paketId}/${row.id}/statistik`)}
                         >
                           Lihat Detail
@@ -323,7 +323,7 @@ export default function RiwayatTryout({ isBimbel }: any) {
                           block
                           variant="outline"
                           theme="primary"
-                          className="!rounded-xl h-11 font-bold"
+                          className="!rounded-xl h-11 font-bold !text-sky-500 !border-sky-500 hover:bg-sky-50"
                           disabled={!row?.isShareAnswer}
                           onClick={() => navigate(`/my-class/${id}/tryout/${paketFK}/${paketId}/${row.id}/pembahasan`)}
                         >

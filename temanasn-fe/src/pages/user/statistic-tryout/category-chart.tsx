@@ -6,8 +6,8 @@ export default function CategoryChart({ item, type = 'BENAR_SALAH' }: any) {
 
   const COLORS =
     type === 'BENAR_SALAH'
-      ? ['#1E3A8A', '#ef4444', '#cbd5e1'] // Dark Blue (Correct), Coral Red (Incorrect), Slate Gray (Unanswered)
-      : ['#1e3a8a', '#2563eb', '#3b82f6', '#60a5fa', '#93c5fd']; // Monochromatic blue gradient for points
+      ? ['#0ea5e9', '#ef4444', '#cbd5e1'] // Light Blue (Correct), Coral Red (Incorrect), Slate Gray (Unanswered)
+      : ['#0284c7', '#0ea5e9', '#38bdf8', '#7dd3fc', '#bae6fd']; // Monochromatic sky blue gradient for points
 
   const data =
     type === 'BENAR_SALAH'

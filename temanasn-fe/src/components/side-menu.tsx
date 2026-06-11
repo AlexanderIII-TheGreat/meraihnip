@@ -148,13 +148,13 @@ export default function SideMenu({
   return (
     <aside
       className={`flex flex-col w-full h-full py-0 lg:py-8 overflow-y-auto 
-        bg-[#0B192C] text-slate-200 
-        border-r border-[#1E293B] 
+        bg-white text-slate-700 
+        border-r border-gray-200 
         rtl:border-r-0 rtl:border-l 
         z-[98] ${isCollapsed ? 'px-2 items-center' : 'px-6'} ${classNames}`}
     >
       {/* Navbar top */}
-      <div className={`flex flex-row justify-between bg-[#0B192C] ${isCollapsed ? 'p-2 justify-center' : 'p-5'}`}>
+      <div className={`flex flex-row justify-between bg-white ${isCollapsed ? 'p-2 justify-center' : 'p-5'}`}>
         <div className="logo flex-row justify-center items-center gap-x-2">
           <img className={`${isCollapsed ? 'h-9 w-9 object-contain' : 'w-auto h-12'}`} src={LOGO} alt="logo" />
         </div>
@@ -182,12 +182,12 @@ export default function SideMenu({
                   key={page.link}
                   title={isCollapsed && typeof page.title === 'string' ? page.title : undefined}
                   className={`w-full text-left flex items-center group !mb-4 py-3 transition-colors duration-300 transform rounded-lg 
-                    text-slate-300 hover:text-white 
-                    hover:bg-slate-800
+                    text-slate-600 hover:text-slate-900 
+                    hover:bg-slate-100
                     ${isCollapsed ? 'justify-center px-0 h-11 w-11 mx-auto' : 'justify-between px-4'}
                     ${
                       checkRouteActive(relativePath, location.pathname, 0, page.exact) &&
-                      'bg-primary text-white'
+                      'bg-primary text-white hover:!bg-primary'
                     }`}
                   onClick={() => {
                     navigate(relativePath);
@@ -243,12 +243,12 @@ export default function SideMenu({
                 to="/affiliate"
                 title={isCollapsed ? 'Affiliate' : undefined}
                 className={`flex items-center group !mb-4 py-3 transition-colors duration-300 transform rounded-lg 
-                  text-slate-300 hover:text-white 
-                  hover:bg-slate-800
+                  text-slate-600 hover:text-slate-900 
+                  hover:bg-slate-100
                   ${isCollapsed ? 'justify-center px-0 h-11 w-11 mx-auto' : 'justify-between px-4'}
                   ${
                     checkRouteActive('/affiliate', location.pathname) &&
-                    'bg-primary text-white'
+                    'bg-primary text-white hover:!bg-primary'
                   }`}
                 onClick={() => {
                   if (window.innerWidth < DESKTOP_BREAKPOINT) {
@@ -265,12 +265,12 @@ export default function SideMenu({
                 to="/affiliate-commission"
                 title={isCollapsed ? 'Affiliate Commission' : undefined}
                 className={`flex items-center group !mb-4 py-3 transition-colors duration-300 transform rounded-lg 
-                  text-slate-300 hover:text-white 
-                  hover:bg-slate-800
+                  text-slate-600 hover:text-slate-900 
+                  hover:bg-slate-100
                   ${isCollapsed ? 'justify-center px-0 h-11 w-11 mx-auto' : 'justify-between px-4'}
                   ${
                     checkRouteActive('/affiliate-commission', location.pathname) &&
-                    'bg-primary text-white'
+                    'bg-primary text-white hover:!bg-primary'
                   }`}
                 onClick={() => {
                   if (window.innerWidth < DESKTOP_BREAKPOINT) {
@@ -300,12 +300,12 @@ export default function SideMenu({
                 to="/profile?tab=affiliate"
                 title={isCollapsed ? 'My Affiliate' : undefined}
                 className={`flex items-center group !mb-4 py-3 transition-colors duration-300 transform rounded-lg 
-                  text-slate-300 hover:text-white 
-                  hover:bg-slate-800
+                  text-slate-600 hover:text-slate-900 
+                  hover:bg-slate-100
                   ${isCollapsed ? 'justify-center px-0 h-11 w-11 mx-auto' : 'justify-between px-4'}
                   ${
                     location.pathname === '/profile' && location.search.includes('tab=affiliate') &&
-                    'bg-primary text-white'
+                    'bg-primary text-white hover:!bg-primary'
                   }`}
                 onClick={() => {
                   if (window.innerWidth < DESKTOP_BREAKPOINT) {
@@ -346,15 +346,15 @@ export default function SideMenu({
                     <button
                       title={isCollapsed ? item.paketPembelian?.nama : undefined}
                       className={`flex items-center w-full group text-base font-medium rounded-lg transition-colors duration-300
-                        text-slate-300 hover:text-white
-                        hover:bg-slate-800
+                        text-slate-600 hover:text-slate-900
+                        hover:bg-slate-100
                         ${isCollapsed ? 'justify-center px-0 h-11 w-11 mx-auto' : 'justify-between px-4 py-3'}
                         ${
                           checkRouteActive(
                             `my-class/${item.paketPembelianId}`,
                             location.pathname,
                             item.paketPembelianId
-                          ) && 'bg-primary text-white'
+                          ) && 'bg-primary text-white hover:!bg-primary'
                         }`}
                       onClick={() => {
                         if (isCollapsed) {
@@ -404,16 +404,16 @@ export default function SideMenu({
                       >
                         {/* Materi */}
                         {item.paketPembelian?._count?.paketPembelianMateri > 0 && (
-                          <Link
+                           <Link
                             to={`/my-class/${item.paketPembelianId}/materi`}
                             className={`flex items-center mt-2 justify-between w-full px-4 py-2.5 text-base font-medium rounded-lg
-                              text-slate-300 hover:text-white 
-                              hover:bg-slate-800
+                              text-slate-600 hover:text-slate-900 
+                              hover:bg-slate-100
                               ${
                                 checkRouteActive(
                                   `my-class/${item.paketPembelianId}/materi`,
                                   location.pathname
-                                ) && 'text-primary bg-slate-800'
+                                ) && 'text-primary bg-sky-50 hover:bg-sky-50'
                               }`}
                           >
                             <div className="flex items-center gap-x-3">
@@ -422,19 +422,19 @@ export default function SideMenu({
                             </div>
                           </Link>
                         )}
-
+ 
                         {/* Bimbel */}
                         {item.paketPembelian?._count?.paketPembelianBimbel > 0 && (
                           <Link
                             to={`/my-class/${item.paketPembelianId}/bimbel`}
                             className={`flex items-center mt-2 justify-between w-full px-4 py-2 text-base font-medium rounded-lg
-                              text-slate-300 hover:text-white 
-                              hover:bg-slate-800
+                              text-slate-600 hover:text-slate-900 
+                              hover:bg-slate-100
                               ${
                                 checkRouteActive(
                                   `my-class/${item.paketPembelianId}/bimbel`,
                                   location.pathname
-                                ) && 'text-primary bg-slate-800'
+                                ) && 'text-primary bg-sky-50 hover:bg-sky-50'
                               }`}
                           >
                             <div className="flex items-center gap-x-3">
@@ -443,19 +443,19 @@ export default function SideMenu({
                             </div>
                           </Link>
                         )}
-
+ 
                         {/* Tryout */}
                         {item.paketPembelian?._count?.paketPembelianTryout > 0 && (
                           <Link
                             to={`/my-class/${item.paketPembelianId}/tryout`}
                             className={`flex items-center mt-2 justify-between w-full px-4 py-2 text-base font-medium rounded-lg
-                              text-slate-300 hover:text-white 
-                              hover:bg-slate-800
+                              text-slate-600 hover:text-slate-900 
+                              hover:bg-slate-100
                               ${
                                 checkRouteActive(
                                   `my-class/${item.paketPembelianId}/tryout`,
                                   location.pathname
-                                ) && 'text-primary bg-slate-800'
+                                ) && 'text-primary bg-sky-50 hover:bg-sky-50'
                               }`}
                           >
                             <div className="flex items-center gap-x-3">

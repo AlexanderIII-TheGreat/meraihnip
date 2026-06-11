@@ -42,7 +42,7 @@ export default function PointChartBenarSalah({ data }: any) {
         <Legend />
         <Bar
           dataKey="Benar"
-          fill="#1E3A8A"
+          fill="#0ea5e9"
           radius={[4, 4, 0, 0]}
         />
         <Bar
