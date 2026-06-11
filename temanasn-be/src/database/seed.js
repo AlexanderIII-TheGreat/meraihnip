@@ -521,6 +521,19 @@ async function main() {
 
   // 8. Seed GenerateSoalHistory & Details for Abiyyu
   console.log('Seeding GenerateSoalHistory for Abiyyu...');
+  
+  // Ensure the GenerateSoalCategory with ID 3 exists to prevent foreign key errors
+  let cat3 = await database.generateSoalCategory.findUnique({ where: { id: 3 } });
+  if (!cat3) {
+    cat3 = await database.generateSoalCategory.create({
+      data: {
+        id: 3,
+        name: 'IPA',
+        kkm: 80
+      }
+    });
+  }
+
   const genHistory1 = await database.generateSoalHistory.create({
     data: {
       userId: testUser.id,
